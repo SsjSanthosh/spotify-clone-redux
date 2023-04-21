@@ -1,12 +1,7 @@
-import AppLayout from '@/components/AppLayout'
+import HomePage from "./index/HomePage";
 
-import React from 'react'
+const IndexPage = () => {
+  return <HomePage />;
+};
 
-const index = () => {
-  return <AppLayout>
-    <h2>there!</h2>
-    
-  </AppLayout>
-}
-
-export default index
+export default IndexPage;

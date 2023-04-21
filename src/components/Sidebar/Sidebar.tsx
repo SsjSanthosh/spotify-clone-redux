@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Sidebar.module.scss";
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
@@ -7,11 +7,10 @@ import SpotifyLogo from "../../../public/images/spotify_logo_white.png";
 import { NAVLINKS, USER_LINKS } from "./Sidebar.utils";
 import { NavlinkType, UserActionLink } from "./Sidebar.types";
 import axios from "axios";
+import { AuthContext } from "context/auth";
+import { AuthContextType } from "context/types";
 const Sidebar = () => {
-  const handleLogin = async () => {
-    const rdata = await axios.get("/api/login");
-    window.location.href = rdata.data.link;
-  };
+ 
 
   return (
     <div className={styles["container"]}>
@@ -46,9 +45,7 @@ const Sidebar = () => {
       {/* Divider */}
       <span className={styles["sidebar-divider"]}></span>
 
-      <Button colorScheme="teal" onClick={handleLogin}>
-        Connect your spotify!
-      </Button>
+     
     </div>
   );
 };

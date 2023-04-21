@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import baseHandler from "../../../utils/baseHandler";
+import baseHandler from "utils/baseHandler";
 import { nanoid } from "nanoid";
 import queryString from "query-string";
 
