@@ -38,3 +38,24 @@ export interface ChildrenType {
 export interface GenericObject {
   [key: string]: any;
 }
+
+export interface TrackType {
+  id: string;
+  added_at: string;
+  track: {
+    name: string;
+    artists?: {
+      name: string;
+      id: string;
+      type: string;
+    }[];
+    album: {
+      name: string;
+      images: {
+        url: string;
+      }[];
+    };
+    track_number: number;
+    duration_ms: number;
+  };
+}

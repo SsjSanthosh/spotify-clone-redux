@@ -1,21 +1,29 @@
-
 @font-face {
-  font-family: 'Gotham-Spotify';
-  src:url('../../fonts/Gotham-Spotify-Font/GothamMedium.ttf');
-  src: url('../../fonts/Gotham-Spotify-Font/GothamLight.ttf');
+  font-family: "Gotham-Spotify";
+  src: url("../../fonts/Gotham-Spotify-Font/GothamMedium.ttf");
+  src: url("../../fonts/Gotham-Spotify-Font/GothamLight.ttf");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Gotham-Spotify';
-  src:url('../../fonts/Gotham-Spotify-Font/GothamBold.ttf');
+  font-family: "Gotham-Spotify";
+  src: url("../../fonts/Gotham-Spotify-Font/GothamBold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 
-*, html, body {
-  font-family: 'Gotham-Spotify', sans-serif;
-  color:#b3ada8;
+*,
+html,
+body {
+  font-family: "Gotham-Spotify", sans-serif;
+  color: #fff;
+}
+
+.loader-div {
   background-color: #000;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

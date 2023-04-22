@@ -1,0 +1,54 @@
+.header {
+  display: flex;
+  padding-bottom: 8px;
+  border-bottom: 0.2px solid rgba(179, 165, 165, 0.4);
+}
+.tracks {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  padding: 16px 0;
+}
+.track {
+  display: flex;
+}
+
+.track-container {
+  display: flex;
+  flex-wrap: nowrap;
+  column-gap: 16px;
+  .track-title {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    
+  }
+  .track-artists {
+    color: #aaa;
+    font-weight: 400;
+  }
+}
+.item-1 {
+  flex: 1;
+}
+
+.item-2 {
+  text-overflow: ellipsis;
+  flex: 10;
+}
+
+.item-3 {
+  flex: 8;
+}
+
+.item-4 {
+  flex: 6;
+}
+
+.item-5 {
+  flex: 4;
+}
+
+.item-6 {
+  flex: 5;
+}

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 import styles from "./Playlists.module.scss";
 import { userSelector } from "redux/userSlice";
+import Link from "next/link";
 
 const Playlists = () => {
   const { playlists } = useSelector(userSelector);
@@ -13,7 +14,10 @@ const Playlists = () => {
       {playlists.map((pl) => {
         return (
           <div className={styles["playlist-item"]} key={pl.id}>
-            <p>{pl.name}</p>
+            <Link href={`/playlist/${pl.id}`}>
+              {" "}
+              <p>{pl.name}</p>
+            </Link>
           </div>
         );
       })}
