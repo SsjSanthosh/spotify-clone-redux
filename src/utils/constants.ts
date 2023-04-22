@@ -5,3 +5,6 @@ export const TOAST_MESSAGES: GenericObject = {
   invalid_token:
     "Your security token is invalid, please connect your account and try again.",
 };
+
+
+export const BASE_ENDPOINT = `https://api.spotify.com/v1`;

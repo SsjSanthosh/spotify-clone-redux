@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./Sidebar.module.scss";
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
@@ -8,9 +8,9 @@ import { NAVLINKS, USER_LINKS } from "./Sidebar.utils";
 import { NavlinkType, UserActionLink } from "./Sidebar.types";
 import axios from "axios";
 import { AuthContext } from "context/auth";
-import { AuthContextType } from "context/types";
+import { AuthContextType, UserContextType } from "context/types";
+import { UserContext } from "context/user";
 const Sidebar = () => {
- 
 
   return (
     <div className={styles["container"]}>
@@ -44,8 +44,6 @@ const Sidebar = () => {
 
       {/* Divider */}
       <span className={styles["sidebar-divider"]}></span>
-
-     
     </div>
   );
 };
