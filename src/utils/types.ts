@@ -24,6 +24,8 @@ export interface ProfileType {
 export interface UserType {
   profile: ProfileType | null;
   playlists: GenericObject[] | null;
+  loading: boolean;
+  error?: boolean;
 }
 export interface AuthType {
   token: null | string;

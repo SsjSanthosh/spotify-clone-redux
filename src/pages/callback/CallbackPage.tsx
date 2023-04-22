@@ -3,22 +3,22 @@ import React, { useContext, useEffect } from "react";
 import styles from "./CallbackPage.module.scss";
 import { useRouter } from "next/router";
 import queryString from "query-string";
-import { AuthContext } from "context/auth";
-import { AuthContextType } from "context/types";
+import { useAppDispatch } from "redux/types";
+import { authSelector, setToken } from "redux/authSlice";
+import { useSelector } from "react-redux";
 const CallbackPage = () => {
   const router = useRouter();
-  const { setToken } = useContext(AuthContext) as AuthContextType;
-
+  const dispatch = useAppDispatch();
+  const auth = useSelector(authSelector);
   useEffect(() => {
     const query = queryString.parse(window.location.hash);
     if (!query.access_token) {
-        router.push("/login?error=invalid_token");
+      router.push("/login?error=invalid_token");
     } else {
-      setToken({ token: query.access_token as string });
+      dispatch(setToken({ token: query.access_token as string }));
       router.push("/?message=success_redirect");
     }
-  }, [router]);
-
+  }, [router, dispatch]);
 
   return (
     <div className={styles["container"]}>

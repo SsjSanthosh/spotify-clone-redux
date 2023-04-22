@@ -1,31 +1,35 @@
-import { AuthContext } from "context/auth";
-import { AuthContextType } from "context/types";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ChildrenType } from "utils/types";
 import styles from "./ProtectedRoute.module.scss";
 import { Spinner } from "@chakra-ui/react";
 import Loader from "components/Loader";
+import { isTokenAvailable } from "utils/functions";
+import { useAppDispatch } from "redux/types";
+import { authSelector, setToken } from "redux/authSlice";
+import { useSelector } from "react-redux";
 
 const ProtectedRoute = ({ children }: ChildrenType) => {
   const router = useRouter();
-  const { isUserAuthenticated, setToken } = useContext(
-    AuthContext
-  ) as AuthContextType;
-  const loggedIn = isUserAuthenticated();
-
+  const token = isTokenAvailable();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useAppDispatch();
+  const auth = useSelector(authSelector);
   useEffect(() => {
-    if (!loggedIn && typeof window !== "undefined") {
-      const token = window.localStorage.getItem("token");
-      if (token) {
-        setToken({ token });
-      } else router.push("/login?error=not_logged_in");
+    if (!auth.token && !token) {
+      router.push("/login?error=not_logged_in");
+      setIsLoggedIn(false);
+    } else if (!auth.token && token) {
+      setIsLoggedIn(true);
+      dispatch(setToken({ token }));
+    } else {
+      setIsLoggedIn(true);
     }
-  }, [router, loggedIn, setToken]);
-  if (loggedIn) {
-    return children;
-  }
-  return (
+  }, [router, token, dispatch, auth.token]);
+
+  return isLoggedIn ? (
+    children
+  ) : (
     <div className={styles["container"]}>
       <Loader />
     </div>

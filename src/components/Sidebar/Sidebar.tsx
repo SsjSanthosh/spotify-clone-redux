@@ -1,17 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import styles from "./Sidebar.module.scss";
-import { Button } from "@chakra-ui/react";
 import Image from "next/image";
-
 import SpotifyLogo from "../../../public/images/spotify_logo_white.png";
 import { NAVLINKS, USER_LINKS } from "./Sidebar.utils";
 import { NavlinkType, UserActionLink } from "./Sidebar.types";
-import axios from "axios";
-import { AuthContext } from "context/auth";
-import { AuthContextType, UserContextType } from "context/types";
-import { UserContext } from "context/user";
+import Playlists from "components/Playlists";
 const Sidebar = () => {
-
   return (
     <div className={styles["container"]}>
       <div className={styles["logo-container"]}>
@@ -44,6 +38,9 @@ const Sidebar = () => {
 
       {/* Divider */}
       <span className={styles["sidebar-divider"]}></span>
+
+      {/* Playlist links */}
+      <Playlists />
     </div>
   );
 };

@@ -5,8 +5,6 @@ import SpotifyLogo from "../../../public/images/spotify_logo_white.png";
 import Image from "next/image";
 import { Button } from "@chakra-ui/react";
 import axios from "axios";
-import { AuthContext } from "context/auth";
-import { AuthContextType } from "context/types";
 import Head from "next/head";
 
 const LoginPage = () => {
@@ -14,8 +12,6 @@ const LoginPage = () => {
     const rdata = await axios.get("/api/login");
     window.location.href = rdata.data.link;
   };
-
-  const auth = useContext(AuthContext) as AuthContextType;
   return (
     <div className={styles["container"]}>
       <Head>

@@ -1,22 +1,25 @@
 import React, { useContext, useEffect } from "react";
 import { AppLayoutProps } from "./AppLayout.types";
 import Sidebar from "../Sidebar/Sidebar";
+import { useSelector } from "react-redux";
 
 import styles from "./AppLayout.module.scss";
-import { UserContextType } from "context/types";
-import { UserContext } from "context/user";
+import { fetchPlaylists, fetchProfile, userSelector } from "redux/userSlice";
+import { useAppDispatch } from "redux/types";
 
 const AppLayout = ({ children }: AppLayoutProps) => {
-  const { user, fetchUser, fetchPlaylists } = useContext(
-    UserContext
-  ) as UserContextType;
+  const user = useSelector(userSelector);
+  const dispatch = useAppDispatch();
+  // get user
   useEffect(() => {
-    const fetchUserAndPlaylists = async () => {
-      await fetchUser();
-      await fetchPlaylists();
-    };
-    fetchUserAndPlaylists();
-  }, []);
+    dispatch(fetchProfile());
+  }, [dispatch]);
+  // get playlists
+  useEffect(() => {
+    if (user.profile?.id) {
+      dispatch(fetchPlaylists());
+    }
+  }, [user.profile, dispatch]);
   return (
     <div className={styles["container"]}>
       <div className={styles["sidebar-container"]}>
