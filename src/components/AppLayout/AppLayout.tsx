@@ -7,6 +7,7 @@ import styles from "./AppLayout.module.scss";
 import { fetchPlaylists, fetchProfile, userSelector } from "redux/userSlice";
 import { useAppDispatch } from "redux/types";
 import SearchBar from "components/SearchBar";
+import UserPill from "components/UserPill";
 
 const AppLayout = ({ children }: AppLayoutProps) => {
   const user = useSelector(userSelector);
@@ -29,7 +30,10 @@ const AppLayout = ({ children }: AppLayoutProps) => {
         <Sidebar />
       </div>
       <div className={styles["content-container"]}>
-        <SearchBar />
+        <div className={styles["top-bar-container"]}>
+          <SearchBar />
+          <UserPill />
+        </div>
         {children}
       </div>
     </div>

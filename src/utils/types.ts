@@ -16,7 +16,7 @@ export interface ProfileType {
     url: string | null;
     height: null | number;
     width: null | number;
-  };
+  }[];
   type: string;
   uri: string;
 }

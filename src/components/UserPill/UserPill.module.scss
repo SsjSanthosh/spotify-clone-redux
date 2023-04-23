@@ -1,0 +1,33 @@
+@import "styles/variables";
+.container {
+   background-color: #282828;
+  border-radius: $sp-xl;
+  width: 150px;
+  :global(.szh-menu) {
+    width: 200px;
+    font-size: $font-md;
+    font-weight: 500;
+   
+  }
+}
+
+.menu-button {
+  display: flex;
+  column-gap: $sp-xs;
+  align-items: center;
+  font-weight: bold;
+  font-size: $font-sm;
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu-button-image-container {
+  position: relative;
+  width: 35px;
+  height: 35px;
+
+  > img {
+    object-fit: cover;
+    border-radius: 60px;
+  }
+}
