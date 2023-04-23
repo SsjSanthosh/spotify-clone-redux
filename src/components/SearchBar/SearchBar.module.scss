@@ -1,3 +1,46 @@
-p {
-  color: black;
+@import "styles/variables";
+.container {
+  padding: $sp-xl;
+  display: inline-block;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.search-icon {
+  color: #000;
+  left: $sp-md;
+  position: absolute;
+  font-size: $sp-xl;
+}
+
+.search-close-icon {
+  font-size: $sp-xl;
+  position: absolute;
+  right: $sp-md;
+  cursor: pointer;
+  color: #000;
+}
+
+.search-input {
+  padding: $sp-md $sp-xl * 2;
+  width: 160px;
+  border-radius: $sp-xl;
+  color: #000;
+  font-size: $font-md - 1;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    font-size: 12px;
+  }
+}
+
+.search-input-extended {
+  width: 360px;
 }

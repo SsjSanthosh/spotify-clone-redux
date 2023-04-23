@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import styles from "./AppLayout.module.scss";
 import { fetchPlaylists, fetchProfile, userSelector } from "redux/userSlice";
 import { useAppDispatch } from "redux/types";
+import SearchBar from "components/SearchBar";
 
 const AppLayout = ({ children }: AppLayoutProps) => {
   const user = useSelector(userSelector);
@@ -25,7 +26,10 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       <div className={styles["sidebar-container"]}>
         <Sidebar />
       </div>
-      <div className={styles["content-container"]}>{children}</div>
+      <div className={styles["content-container"]}>
+        <SearchBar />
+        {children}
+      </div>
     </div>
   );
 };

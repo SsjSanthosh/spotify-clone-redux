@@ -6,7 +6,6 @@ const log = console.log;
 
 const generateComponent = () => {
   const args = minimist(process.argv.slice(2));
-  console.log({ args });
   const name = objectPath.get(args, "n", null);
   if (!name) throw new Error("No name specified");
   else {
@@ -34,7 +33,7 @@ const generateComponent = () => {
       },
       {
         name: `${name}.module.scss`,
-        content: `p {color:black;}`,
+        content: `.container {}`,
         parser: "scss",
       },
     ];
