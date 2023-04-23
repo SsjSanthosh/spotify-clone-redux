@@ -19,6 +19,7 @@ import ButtonPill from "components/ButtonPill";
 import TrackTable from "components/TrackTable";
 import AlbumCard from "components/AlbumCard";
 import Head from "next/head";
+import PlaylistCard from "components/PlaylistCard";
 
 interface SearchType {
   tracks: null | TrackType[];
@@ -69,13 +70,22 @@ const SearchPage = () => {
         </div>
       );
     }
+    if (type === "playlists" && results.playlists) {
+      return (
+        <div className={styles["albums-container"]}>
+          {results.playlists.map((play) => {
+            return <PlaylistCard key={play.id} playlist={play} />
+          })} 
+        </div>
+      );
+    }
   };
 
   return (
     <ProtectedRoute>
       <AppLayout>
         <Head>
-          <title>Spotify - Search &quot;{query.q}&quot;</title>
+          <title>Spotify - Search &quot;{query.q}&quot; in {type}</title>
         </Head>
         <div className={styles["container"]}>
           <div className={styles["search-types"]}>

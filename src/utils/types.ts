@@ -68,6 +68,11 @@ export interface PlaylistType {
   primary_color: null | string;
   tracks: TrackType[];
   type: string;
+  images: SpotifyImageType[];
+  name: string;
+  owner: {
+    display_name: string;
+  };
 }
 
 export interface AlbumType {

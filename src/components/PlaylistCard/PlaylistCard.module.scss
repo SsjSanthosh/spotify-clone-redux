@@ -1,0 +1,42 @@
+@import "styles/variables";
+.container {
+  color: #fff;
+  width: 190px;
+  height: 280px;
+  padding: $sp-md;
+  background-color: #353434;
+  cursor: pointer;
+  border-radius: $sp-sm;
+  position: relative;
+  h5 {
+    font-weight: bold;
+    font-size: $font-md + 1;
+  }
+  &:hover {
+    background-color: #494747;
+  }
+  &:hover {
+    .play-icon-container {
+      opacity: 1;
+    }
+  }
+}
+.image-container {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+  margin-bottom: $sp-lg;
+  > img {
+    border-radius: $sp-sm;
+  }
+}
+
+.play-icon-container {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
