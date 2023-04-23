@@ -1,6 +1,6 @@
 @import "styles/variables";
 .container {
-  padding: $sp-xl;
+  padding: $sp-xl $sp-xl * 3;
   display: inline-block;
 }
 

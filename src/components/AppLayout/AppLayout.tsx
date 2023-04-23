@@ -13,14 +13,16 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const dispatch = useAppDispatch();
   // get user
   useEffect(() => {
-    dispatch(fetchProfile());
-  }, [dispatch]);
+    if (!user.profile) {
+      dispatch(fetchProfile());
+    }
+  }, [dispatch, user.profile]);
   // get playlists
   useEffect(() => {
-    if (user.profile?.id) {
+    if (user.profile?.id && !user.playlists) {
       dispatch(fetchPlaylists());
     }
-  }, [user.profile, dispatch]);
+  }, [user.profile, dispatch, user.playlists]);
   return (
     <div className={styles["container"]}>
       <div className={styles["sidebar-container"]}>

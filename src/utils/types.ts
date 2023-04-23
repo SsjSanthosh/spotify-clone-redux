@@ -59,3 +59,12 @@ export interface TrackType {
     duration_ms: number;
   };
 }
+
+export interface GenreType {
+  href: string;
+  id: string;
+  name: string;
+  icons: {
+    url: string;
+  }[];
+}

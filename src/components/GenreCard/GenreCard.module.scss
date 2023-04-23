@@ -1,0 +1,18 @@
+@import "styles/variables";
+.container {
+  h4 {
+    color: #fff;
+    font-size: $font-lg;
+    top: -$sp-lg * 2;
+    left: $sp-lg;
+    z-index: 10;
+    position: relative;
+    font-weight: bold;
+  }
+}
+.image-container {
+  width: 180px;
+  height: 180px;
+  position: relative;
+  z-index: 1;
+}

@@ -16,7 +16,7 @@ export const NAVLINKS: NavlinkType[] = [
   },
   {
     icon: <AiOutlineSearch className={styles["navlink-icon"]} />,
-    link: "/search",
+    link: "/genres",
     text: "Search",
     key: nanoid(),
   },

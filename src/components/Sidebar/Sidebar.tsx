@@ -5,6 +5,7 @@ import SpotifyLogo from "../../../public/images/spotify_logo_white.png";
 import { NAVLINKS, USER_LINKS } from "./Sidebar.utils";
 import { NavlinkType, UserActionLink } from "./Sidebar.types";
 import Playlists from "components/Playlists";
+import Link from "next/link";
 const Sidebar = () => {
   return (
     <div className={styles["container"]}>
@@ -15,10 +16,12 @@ const Sidebar = () => {
       <div className={styles["navlinks-container"]}>
         {NAVLINKS.map((navlink: NavlinkType) => {
           return (
-            <div className={styles["navlink-container"]} key={navlink.key}>
-              {navlink.icon}
-              <span className={styles["navlink-link"]}>{navlink.text}</span>
-            </div>
+            <Link key={navlink.key} href={navlink.link as string}>
+              <div className={styles["navlink-container"]}>
+                {navlink.icon}
+                <span className={styles["navlink-link"]}>{navlink.text}</span>
+              </div>
+            </Link>
           );
         })}
       </div>

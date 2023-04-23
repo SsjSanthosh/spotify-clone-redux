@@ -1,15 +1,15 @@
 import ProtectedRoute from "components/ProtectedRoute";
-import styles from "./SearchPage.module.scss";
+import styles from "./CategoryPage.module.scss";
 import AppLayout from "components/AppLayout";
 
-const SearchPage = () => {
+const CategoryPage = () => {
   return (
     <ProtectedRoute>
       <AppLayout>
-        <p>Search page</p>
+        <p>Category</p>
       </AppLayout>
     </ProtectedRoute>
   );
 };
 
-export default SearchPage;
+export default CategoryPage;

@@ -33,7 +33,7 @@ const generateComponent = () => {
       },
       {
         name: `${name}.module.scss`,
-        content: `.container {}`,
+        content: `@import "styles/variables" .container {}`,
         parser: "scss",
       },
     ];

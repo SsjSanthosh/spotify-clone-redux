@@ -1,0 +1,14 @@
+@import "styles/variables";
+.genre-container {
+  padding:$sp-xl;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: $sp-xl;
+  column-gap: $sp-xl;
+  height:780px;
+  overflow-y: auto;
+  margin:0 auto;
+  >image {
+    border-radius: $sp-xl;
+  }
+}
