@@ -24,17 +24,24 @@ const PlaylistPage = () => {
     const getData = async (id: string) => {
       try {
         const data = await getPlaylistData(id);
+        data.tracks = data.tracks.items.map((t:GenericObject)=>{
+          const newTrack = {...t, ...t.track};
+          delete newTrack.track;
+          return newTrack;
+        })
         setPlaylist(data);
       } catch (err) {
         console.log({ err });
       }
     };
     if (!query.id) {
-      //   router.push("/");
+      console.log('why')
+        // router.push("/");
     } else {
       getData(query.id as string);
     }
   }, [router]);
+  console.log(playlist.tracks);
   return (
     <ProtectedRoute>
       <AppLayout>
@@ -48,7 +55,7 @@ const PlaylistPage = () => {
                 <PlaylistHeader playlist={playlist} />
               </div>
               <div className={styles["content"]}>
-                <TrackTable tracks={playlist.tracks.items} />
+                <TrackTable tracks={playlist.tracks} />
               </div>
             </div>
           </main>

@@ -12,6 +12,11 @@ import {
 } from "utils/types";
 import { fetchData } from "utils/functions";
 import { SEARCH_ENDPOINT } from "utils/endpoints";
+import CompactTrackDisplay from "components/CompactTrackDisplay";
+import SectionHeader from "components/SectionHeader";
+import { SEARCH_TYPES, SearchCategoryButton } from "./SearchPage.helpers";
+import ButtonPill from "components/ButtonPill";
+import TrackTable from "components/TrackTable";
 
 interface SearchType {
   tracks: null | TrackType[];
@@ -23,34 +28,57 @@ interface SearchType {
 const SearchPage = () => {
   const router = useRouter();
   const { query } = router;
-  const [results, setResults] = useState<SearchType | null>({
+  const [results, setResults] = useState<SearchType>({
     tracks: null,
     playlists: null,
     albums: null,
     artists: null,
   });
+  const type = query.type || "tracks";
   useEffect(() => {
     const fetchAndSetResults = async (val: string) => {
+      const typeKey = type.slice(0, type.length - 1) as string;
       const data = await fetchData(
-        SEARCH_ENDPOINT.replace("{search_query}", val)
+        SEARCH_ENDPOINT.replace("{search_query}", val).replace(
+          "{type}",
+          typeKey as string
+        )
       );
-      const { tracks, albums, playlists, artists } = data;
-      setResults({
-        albums: albums.items,
-        playlists: playlists.items,
-        artists: artists.items,
-        tracks: tracks.items,
-      });
+      setResults((results) => ({
+        ...results,
+        [type as string]: data[type as string].items,
+      }));
     };
     if (query.q) {
       fetchAndSetResults(query.q as string);
     }
-  }, []);
-  console.log({ results });
+  }, [query, type]);
+
+  const renderSection = () => {
+    if (type === "tracks" && results.tracks) {
+      return <TrackTable tracks={results.tracks} />;
+    }
+  };
+
+  console.log({ type, results });
   return (
     <ProtectedRoute>
       <AppLayout>
-        <p>Search page</p>
+        <div className={styles["container"]}>
+          <div className={styles["search-types"]}>
+            {SEARCH_TYPES.map((t) => {
+              return (
+                <SearchCategoryButton
+                  query={query.q as string}
+                  type={t}
+                  key={t}
+                  highlight={t == type}
+                />
+              );
+            })}
+          </div>
+          <div className={styles["section-container"]}>{renderSection()}</div>
+        </div>
       </AppLayout>
     </ProtectedRoute>
   );

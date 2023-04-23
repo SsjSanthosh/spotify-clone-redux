@@ -85,11 +85,9 @@ export interface AlbumType {
 export interface TrackType {
   id: string;
   added_at: string;
-  track: {
-    name: string;
-    artists?: ArtistType[];
-    album: AlbumType[];
-    track_number: number;
-    duration_ms: number;
-  };
+  name: string;
+  artists?: ArtistType[];
+  album: AlbumType;
+  track_number: number;
+  duration_ms: number;
 }

@@ -10,4 +10,4 @@ export const GENRES_ENDPOINT =
   "/browse/categories?country=IN&locale=in&offset=0&limit=35";
 
 export const SEARCH_ENDPOINT =
-  "/search?query={search_query}&type=track,album,playlist,artist&market=IN&locale=en-IN%2Cen%3Bq%3D0.9&offset=0&limit=20";
+  "/search?query={search_query}&type={type}&market=IN&locale=en-IN%2Cen%3Bq%3D0.9&offset=0&limit=50";

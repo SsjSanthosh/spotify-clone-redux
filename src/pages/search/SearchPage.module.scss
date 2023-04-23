@@ -1,2 +1,48 @@
-@import "styles/variables" .container {
+@import "styles/variables";
+.container {
+  padding: $sp-lg $sp-xl * 2;
+}
+
+.tracks-artists-container {
+  display: flex;
+}
+.tracks-container {
+  width: 40%;
+  height: 40vh;
+  overflow-y: scroll;
+}
+
+.search-types {
+  display: flex;
+  column-gap: $sp-lg;
+}
+
+.search-category-btn {
+  border: none;
+  outline: none;
+  background-color: #000;
+  color: #fff;
+  border-radius: 20px;
+  padding: $sp-xs $sp-lg;
+  text-transform: capitalize;
+  font-size: $font-sm + 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s all ease;
+  &:focus {
+    outline: none;
+  }
+}
+
+.search-category-active {
+  background-color: #fff;
+  color: #000;
+}
+
+
+.section-container {
+  height:75vh;
+  overflow-y: scroll;
+  margin:$sp-xl 0;
 }

@@ -1,0 +1,29 @@
+@import "styles/variables";
+.container {
+    display:flex;
+    row-gap: $sp-lg;
+    flex-direction: column;
+    color:#fff;
+}
+
+.track {
+    display: flex;
+    column-gap: $sp-lg;
+    h5 {
+        font-weight: bold;
+    }
+    span {
+        color: #817f7f;
+        font-weight: lighter;
+        font-size: $font-sm + 1;
+    }
+}
+
+.track-image-container {
+    width:50px;
+    height:50px;
+    position: relative;
+    > img {
+        object-fit: cover;
+    }
+}
