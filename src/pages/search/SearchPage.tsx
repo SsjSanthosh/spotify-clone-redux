@@ -20,6 +20,7 @@ import TrackTable from "components/TrackTable";
 import AlbumCard from "components/AlbumCard";
 import Head from "next/head";
 import PlaylistCard from "components/PlaylistCard";
+import ArtistCard from "components/ArtistCard";
 
 interface SearchType {
   tracks: null | TrackType[];
@@ -75,6 +76,15 @@ const SearchPage = () => {
         <div className={styles["albums-container"]}>
           {results.playlists.map((play) => {
             return <PlaylistCard key={play.id} playlist={play} />
+          })} 
+        </div>
+      );
+    }
+    if (type === "artists" && results.artists) {
+      return (
+        <div className={styles["albums-container"]}>
+          {results.artists.map((art) => {
+            return <ArtistCard key={art.id} artist={art} />
           })} 
         </div>
       );

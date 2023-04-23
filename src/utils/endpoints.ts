@@ -11,3 +11,7 @@ export const GENRES_ENDPOINT =
 
 export const SEARCH_ENDPOINT =
   "/search?query={search_query}&type={type}&market=IN&locale=en-IN%2Cen%3Bq%3D0.9&offset=0&limit=50";
+
+export const PLAYER_ENDPOINT = "/me/player";
+
+export const PLAYER_PLAY_ENDPOINT = "/me/player/play";

@@ -4,11 +4,15 @@ import styles from "./TrackTable.module.scss";
 import { TrackType } from "utils/types";
 import dayjs from "dayjs";
 import Image from "next/image";
+import { playPauseResource } from "utils/playbackFunctions";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
 const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
+  const handleTrack = async (track: TrackType) => {
+    await playPauseResource({ uris: [track.uri] });
+  };
   return (
     <div className={styles["container"]}>
       <div className={styles["header"]}>
@@ -21,7 +25,11 @@ const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
       <div className={styles["tracks"]}>
         {tracks.map((track: TrackType, idx: number) => {
           return (
-            <div className={styles["track"]} key={track.id}>
+            <div
+              className={styles["track"]}
+              key={track.id}
+              onClick={() => handleTrack(track)}
+            >
               <div className={`${styles["item-1"]}`}>{idx + 1}</div>
               <div
                 className={`${styles["item-2"]} ${styles["track-container"]}`}

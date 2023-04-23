@@ -26,7 +26,6 @@ const SearchBar = () => {
             focused && styles["search-input-extended"]
           }`}
           onChange={(e) => setInput(e.target.value)}
-          onClick={(e) => console.log(e)}
           onFocus={() => setFocused(true)}
           // @TODO - fix this blur
           onBlur={() => setFocused(false)}

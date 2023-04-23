@@ -31,6 +31,35 @@ export interface AuthType {
   token: null | string;
 }
 
+export interface PlayerType {
+  player: {
+    device: {
+      id: string;
+      is_active: boolean;
+      is_private_session: boolean;
+      name: string;
+      type: string;
+      volume_percent: number;
+    };
+    repeat_state: "string";
+    shuffle_state: boolean;
+    context: {
+      type: string;
+      href: string;
+      external_urls: {
+        spotify: string;
+      };
+      uri: string;
+    };
+    timestamp: number;
+    progress_ms: number;
+    is_playing: boolean;
+    item: GenericObject;
+  } | null;
+  loading: boolean;
+  error: null | string;
+}
+
 export interface ChildrenType {
   children: React.ReactElement;
 }
@@ -50,12 +79,15 @@ export interface ArtistType {
   id: string;
   type: string;
   name: string;
+  uri: string;
+  images: SpotifyImageType[];
 }
 
 export interface GenreType {
   href: string;
   id: string;
   name: string;
+  uri: string;
   icons: {
     url: string;
   }[];
@@ -70,6 +102,7 @@ export interface PlaylistType {
   type: string;
   images: SpotifyImageType[];
   name: string;
+  uri: string;
   owner: {
     display_name: string;
   };
@@ -96,4 +129,5 @@ export interface TrackType {
   album: AlbumType;
   track_number: number;
   duration_ms: number;
+  uri: string;
 }

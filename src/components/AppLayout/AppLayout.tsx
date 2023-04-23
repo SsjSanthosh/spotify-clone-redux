@@ -9,11 +9,14 @@ import { useAppDispatch } from "redux/types";
 import SearchBar from "components/SearchBar";
 import UserPill from "components/UserPill";
 import { useRouter } from "next/router";
+import { fetchPlayerData, playerSelector } from "redux/playerSlice";
 
 const AppLayout = ({ children }: AppLayoutProps) => {
   const user = useSelector(userSelector);
+  const player = useSelector(playerSelector);
   const dispatch = useAppDispatch();
   const router = useRouter();
+
   // get user
   useEffect(() => {
     if (!user.profile) {
@@ -26,6 +29,11 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       dispatch(fetchPlaylists());
     }
   }, [user.profile, dispatch, user.playlists]);
+
+  // fetch player
+  useEffect(() => {
+    dispatch(fetchPlayerData());
+  }, [dispatch]);
   return (
     <div className={styles["container"]}>
       <div className={styles["sidebar-container"]}>

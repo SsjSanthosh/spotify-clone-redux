@@ -35,13 +35,11 @@ const PlaylistPage = () => {
       }
     };
     if (!query.id) {
-      console.log('why')
-        // router.push("/");
+        router.push("/");
     } else {
       getData(query.id as string);
     }
   }, [router]);
-  console.log(playlist.tracks);
   return (
     <ProtectedRoute>
       <AppLayout>

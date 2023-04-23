@@ -11,6 +11,8 @@
 .content-container {
   background-color: rgba(0, 0, 0, 0.9);
   flex: 1;
+  height:90vh;
+  overflow-y: scroll;
 }
 
 .top-bar-container {
@@ -19,4 +21,5 @@
   justify-content: space-between;
   margin: 0 $sp-xl;
   padding: $sp-xl;
+  height:10vh;
 }

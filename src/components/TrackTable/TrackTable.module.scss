@@ -15,6 +15,10 @@
 }
 .track {
   display: flex;
+  cursor: pointer;
+  &:hover {
+    background-color:rgba(179, 165, 165, 0.4)
+  }
 }
 
 .track-container {
@@ -33,6 +37,8 @@
 }
 .item-1 {
   flex: 1;
+  display: flex;
+  align-items: center;
 }
 
 .item-2 {
