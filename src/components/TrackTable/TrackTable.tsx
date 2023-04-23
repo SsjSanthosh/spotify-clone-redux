@@ -5,13 +5,17 @@ import { TrackType } from "utils/types";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { playPauseResource } from "utils/playbackFunctions";
+import { useAppDispatch } from "redux/types";
+import { fetchPlayerData } from "redux/playerSlice";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
 const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
+  const dispatch = useAppDispatch();
   const handleTrack = async (track: TrackType) => {
     await playPauseResource({ uris: [track.uri] });
+    dispatch(fetchPlayerData());
   };
   return (
     <div className={styles["container"]}>

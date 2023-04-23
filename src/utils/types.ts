@@ -41,7 +41,7 @@ export interface PlayerType {
       type: string;
       volume_percent: number;
     };
-    repeat_state: "string";
+    repeat_state: "off" | "context" | "track";
     shuffle_state: boolean;
     context: {
       type: string;
@@ -54,7 +54,7 @@ export interface PlayerType {
     timestamp: number;
     progress_ms: number;
     is_playing: boolean;
-    item: GenericObject;
+    item: TrackType;
   } | null;
   loading: boolean;
   error: null | string;

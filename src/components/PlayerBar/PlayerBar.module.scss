@@ -1,0 +1,71 @@
+@import "styles/variables";
+.container {
+  height: 100%;
+  display: flex;
+  padding: $sp-lg * 1.2 $sp-xl;
+  position: relative;
+}
+
+.controls-container {
+  display: flex;
+  position: absolute;
+  top: 0%;
+  left:50%;
+  height: 100%;
+  column-gap: $sp-xl;
+  color: #fff;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.shuffle-icon,
+.repeat-icon {
+  color: #b1afaf;
+  cursor: pointer;
+}
+
+.main-controls {
+  display: flex;
+  column-gap: $sp-lg;
+  align-items: center;
+}
+.play-icon {
+  font-size: $font-lg * 3;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.active-icon {
+  color: $primary;
+}
+.prev-icon,
+.next-icon {
+  font-size: $font-lg * 2;
+  transition: all 0.3s ease;
+  color: #cfc8c8;
+  &:hover {
+    color: #fff;
+  }
+}
+
+.track-container {
+  display: flex;
+  color: #fff;
+  font-weight: bold;
+  column-gap: $sp-lg;
+  width:400px;
+  span {
+    font-weight: 300;
+    font-size: $font-sm;
+    color:#a7a7a7;
+  }
+}
+
+.track-image-container {
+  position: relative;
+  width: 56px;
+  height: 56px;
+}

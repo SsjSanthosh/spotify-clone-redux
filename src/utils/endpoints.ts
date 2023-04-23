@@ -15,3 +15,13 @@ export const SEARCH_ENDPOINT =
 export const PLAYER_ENDPOINT = "/me/player";
 
 export const PLAYER_PLAY_ENDPOINT = "/me/player/play";
+
+export const PLAYER_PAUSE_ENDPOINT = "/me/player/pause";
+
+export const PLAYER_NEXT_ENDPOINT = "/me/player/next";
+
+export const PLAYER_PREV_ENDPOINT = "/me/player/previous";
+
+export const PLAYER_SHUFFLE_ENDPOINT = "/me/player/shuffle?state={state}";
+
+export const PLAYER_REPEAT_ENDPOINT = "/me/player/repeat?state={state}";

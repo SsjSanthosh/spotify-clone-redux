@@ -90,13 +90,14 @@ const SearchPage = () => {
       );
     }
   };
+  
 
   return (
     <ProtectedRoute>
       <AppLayout>
-        <Head>
+        {/* <Head>
           <title>Spotify - Search &quot;{query.q}&quot; in {type}</title>
-        </Head>
+        </Head> */}
         <div className={styles["container"]}>
           <div className={styles["search-types"]}>
             {SEARCH_TYPES.map((t) => {

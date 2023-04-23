@@ -10,6 +10,8 @@ import SearchBar from "components/SearchBar";
 import UserPill from "components/UserPill";
 import { useRouter } from "next/router";
 import { fetchPlayerData, playerSelector } from "redux/playerSlice";
+import PlayerBar from "components/PlayerBar";
+import Head from "next/head";
 
 const AppLayout = ({ children }: AppLayoutProps) => {
   const user = useSelector(userSelector);
@@ -32,19 +34,32 @@ const AppLayout = ({ children }: AppLayoutProps) => {
 
   // fetch player
   useEffect(() => {
-    dispatch(fetchPlayerData());
+    const interval = setInterval(() => {
+      dispatch(fetchPlayerData());
+    }, 5 * 1000);
+    return () => clearInterval(interval);
   }, [dispatch]);
+
+  const pageTitle = player.player?.is_playing
+    ? `Now playing - ${player.player.item.name}`
+    : null;
   return (
     <div className={styles["container"]}>
-      <div className={styles["sidebar-container"]}>
-        <Sidebar />
-      </div>
-      <div className={styles["content-container"]}>
-        <div className={styles["top-bar-container"]}>
-          <SearchBar />
-          <UserPill />
+      {pageTitle && <Head>{pageTitle}</Head>}
+      <div className={styles["page-container"]}>
+        <div className={styles["sidebar-container"]}>
+          <Sidebar />
         </div>
-        {children}
+        <div className={styles["content-container"]}>
+          <div className={styles["top-bar-container"]}>
+            <SearchBar />
+            <UserPill />
+          </div>
+          <div className={styles["page-content"]}>{children}</div>
+        </div>
+      </div>
+      <div className={styles["player-container"]}>
+        <PlayerBar />
       </div>
     </div>
   );

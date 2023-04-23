@@ -40,6 +40,6 @@ export const playerSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const playerSelector = (state: RootReduxState) => state.player.player;
+export const playerSelector = (state: RootReduxState) => state.player;
 
 export default playerSlice.reducer;

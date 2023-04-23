@@ -1,18 +1,24 @@
 @import "styles/variables";
 .container {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
+}
+.page-container {
+  display: flex;
+  width:100vw;
+  height:90vh;
 }
 
 .sidebar-container {
   width: 300px;
   background-color: #000;
+  height:90vh;
+  overflow-y: auto;
 }
 .content-container {
   background-color: rgba(0, 0, 0, 0.9);
   flex: 1;
-  height:90vh;
-  overflow-y: scroll;
+  height: 100vh;
 }
 
 .top-bar-container {
@@ -21,5 +27,16 @@
   justify-content: space-between;
   margin: 0 $sp-xl;
   padding: $sp-xl;
-  height:10vh;
+  height: 10vh;
+  overflow-y: auto;
+}
+
+.page-content {
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.player-container {
+  height: 10vh;
+  background-color: #272626;
 }

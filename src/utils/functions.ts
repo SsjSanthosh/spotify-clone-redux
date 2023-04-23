@@ -26,6 +26,11 @@ export const fetchData = async (resource: string) => {
   return rdata.data;
 };
 
+export const postData = async (resource: string, body: GenericObject) => {
+  const endpoint = BASE_ENDPOINT + resource;
+  await axios.post(endpoint, body);
+};
+
 export const putData = async (resource: string, body: GenericObject) => {
   const endpoint = BASE_ENDPOINT + resource;
   await axios.put(endpoint, body);
