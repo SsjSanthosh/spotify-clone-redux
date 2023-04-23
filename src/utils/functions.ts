@@ -24,3 +24,8 @@ export const fetchData = async (resource: string) => {
   const rdata = await axios.get(endpoint);
   return rdata.data;
 };
+
+export const trimString = (str: string, limit: number) => {
+  if (str.length < limit) return str;
+  return str.slice(0, limit) + "...";
+};

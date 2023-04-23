@@ -80,6 +80,7 @@ export interface AlbumType {
   release_date: string;
   total_tracks: number;
   uri: string;
+  id: string;
 }
 
 export interface TrackType {

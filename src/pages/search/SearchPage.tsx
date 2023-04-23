@@ -17,6 +17,8 @@ import SectionHeader from "components/SectionHeader";
 import { SEARCH_TYPES, SearchCategoryButton } from "./SearchPage.helpers";
 import ButtonPill from "components/ButtonPill";
 import TrackTable from "components/TrackTable";
+import AlbumCard from "components/AlbumCard";
+import Head from "next/head";
 
 interface SearchType {
   tracks: null | TrackType[];
@@ -58,12 +60,23 @@ const SearchPage = () => {
     if (type === "tracks" && results.tracks) {
       return <TrackTable tracks={results.tracks} />;
     }
+    if (type === "albums" && results.albums) {
+      return (
+        <div className={styles["albums-container"]}>
+          {results.albums.map((album) => {
+            return <AlbumCard key={album.id} album={album} />;
+          })}
+        </div>
+      );
+    }
   };
 
-  console.log({ type, results });
   return (
     <ProtectedRoute>
       <AppLayout>
+        <Head>
+          <title>Spotify - Search &quot;{query.q}&quot;</title>
+        </Head>
         <div className={styles["container"]}>
           <div className={styles["search-types"]}>
             {SEARCH_TYPES.map((t) => {
