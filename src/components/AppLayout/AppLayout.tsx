@@ -8,10 +8,12 @@ import { fetchPlaylists, fetchProfile, userSelector } from "redux/userSlice";
 import { useAppDispatch } from "redux/types";
 import SearchBar from "components/SearchBar";
 import UserPill from "components/UserPill";
+import { useRouter } from "next/router";
 
 const AppLayout = ({ children }: AppLayoutProps) => {
   const user = useSelector(userSelector);
   const dispatch = useAppDispatch();
+  const router = useRouter();
   // get user
   useEffect(() => {
     if (!user.profile) {
