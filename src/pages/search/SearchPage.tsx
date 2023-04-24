@@ -6,21 +6,16 @@ import { useEffect, useState } from "react";
 import {
   AlbumType,
   ArtistType,
-  GenericObject,
   PlaylistType,
   TrackType,
 } from "utils/types";
 import { fetchData } from "utils/functions";
 import { SEARCH_ENDPOINT } from "utils/endpoints";
-import CompactTrackDisplay from "components/CompactTrackDisplay";
-import SectionHeader from "components/SectionHeader";
-import { SEARCH_TYPES, SearchCategoryButton } from "./SearchPage.helpers";
-import ButtonPill from "components/ButtonPill";
 import TrackTable from "components/TrackTable";
 import AlbumCard from "components/AlbumCard";
-import Head from "next/head";
 import PlaylistCard from "components/PlaylistCard";
 import ArtistCard from "components/ArtistCard";
+import Link from "next/link";
 
 interface SearchType {
   tracks: null | TrackType[];
@@ -28,6 +23,25 @@ interface SearchType {
   albums: null | AlbumType[];
   artists: null | ArtistType[];
 }
+
+
+export const SEARCH_TYPES = ["artists", "playlists", "tracks", "albums"];
+
+const SearchCategoryButton = ({
+  query,
+  type,
+  highlight
+}: {
+  query: string;
+  type: string;
+  highlight: boolean;
+}) => {
+  return (
+    <Link href={`/search?q=${query}&type=${type}`}>
+      <button className={`${styles['search-category-btn']} ${highlight && styles['search-category-active']}`}>{type}</button>
+    </Link>
+  );
+};
 
 const SearchPage = () => {
   const router = useRouter();
