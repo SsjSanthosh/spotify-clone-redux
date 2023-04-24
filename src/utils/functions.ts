@@ -4,7 +4,7 @@ import { BASE_ENDPOINT } from "./constants";
 import dayjs from "dayjs";
 import { GenericObject } from "./types";
 
-var duration = require("dayjs/plugin/duration");
+import duration from "dayjs/plugin/duration";
 dayjs.extend(duration);
 
 export const isTokenAvailable = () => {

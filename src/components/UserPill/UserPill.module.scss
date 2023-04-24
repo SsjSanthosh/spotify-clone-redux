@@ -7,7 +7,9 @@
     width: 200px;
     font-size: $font-md;
     font-weight: 500;
-   
+    top:10px !important;
+    left:-50px !important;
+    background-color: $player-bg-color;
   }
 }
 

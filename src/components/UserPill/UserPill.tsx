@@ -26,8 +26,8 @@ const UserPill = () => {
         theming="dark"
         transition
         direction="bottom"
-        offsetX={-50}
-        offsetY={4}
+        offsetX={10}
+        offsetY={-200}
       >
         <a target="_blank" href="https://open.spotify.com/">
           <MenuItem>Open web player</MenuItem>
