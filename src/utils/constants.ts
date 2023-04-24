@@ -6,5 +6,7 @@ export const TOAST_MESSAGES: GenericObject = {
     "Your security token is invalid, please connect your account and try again.",
 };
 
-
 export const BASE_ENDPOINT = `https://api.spotify.com/v1`;
+
+export const FALLBACK_IMAGE =
+  "https://w7.pngwing.com/pngs/427/957/png-transparent-musical-note-musical-note-rectangle-monochrome-musical-notation-thumbnail.png";

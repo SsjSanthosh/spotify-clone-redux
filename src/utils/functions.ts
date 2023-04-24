@@ -26,17 +26,17 @@ raxios.interceptors.response.use(
     return response;
   },
   function (error) {
-    if (error.code.status === 401) {
-      const toast = useToast();
+    console.log({ error });
+    if (error.response.status === 401) {
       store.dispatch(clearUser());
       store.dispatch(deleteToken());
       store.dispatch(clearPlayer());
       window.location.href = "/login";
-      toast({
-        description:
-          "Your token has expired, please click the button below to connect your account and continue using this application",
-        status: "error",
-      });
+      // toast({
+      //   description:
+      //     "Your token has expired, please click the button below to connect your account and continue using this application",
+      //   status: "error",
+      // });
     }
     return Promise.reject(error);
   }

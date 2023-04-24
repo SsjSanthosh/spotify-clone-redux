@@ -8,6 +8,8 @@ import { playPauseResource } from "utils/playbackFunctions";
 import { useAppDispatch } from "redux/types";
 import { fetchPlayerData } from "redux/playerSlice";
 import { getDuration } from "utils/functions";
+import { FALLBACK_IMAGE } from "utils/constants";
+import { nanoid } from "nanoid";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -29,38 +31,45 @@ const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
       </div>
       <div className={styles["tracks"]}>
         {tracks.map((track: TrackType, idx: number) => {
-          return (
-            <div
-              className={styles["track"]}
-              key={track.id}
-              onClick={() => handleTrack(track)}
-            >
-              <div className={`${styles["item-1"]}`}>{idx + 1}</div>
+          if (!!track.name.length) {
+            const imageSrc = !!track.album.images.length
+              ? track.album.images[0].url
+              : FALLBACK_IMAGE;
+            return (
               <div
-                className={`${styles["item-2"]} ${styles["track-container"]}`}
+                className={styles["track"]}
+                key={nanoid()}
+                onClick={() => handleTrack(track)}
               >
-                <div className={styles["track-image"]}>
-                  <Image
-                    src={track.album.images[0].url}
-                    width={40}
-                    height={40}
-                    alt={track.album.name}
-                  />
+                <div className={`${styles["item-1"]}`}>{idx + 1}</div>
+                <div
+                  className={`${styles["item-2"]} ${styles["track-container"]}`}
+                >
+                  <div className={styles["track-image"]}>
+                    <Image
+                      src={imageSrc}
+                      width={40}
+                      height={40}
+                      alt={track.album.name}
+                    />
+                  </div>
+                  <div className={styles["track-title"]}>
+                    <p className={styles["track-name"]}>{track.name}</p>
+                    <span className={styles["track-artists"]}>
+                      {track.artists?.map((art) => art.name).join(",")}
+                    </span>
+                  </div>
                 </div>
-                <div className={styles["track-title"]}>
-                  <span>{track.name}</span>
-                  <span className={styles["track-artists"]}>
-                    {track.artists?.map((art) => art.name).join(",")}
-                  </span>
+                <div className={styles["item-3"]}>
+                  <p className={styles["track-album"]}>{track.album?.name}</p>
+                </div>
+                <div className={styles["item-4"]}>No</div>
+                <div className={styles["item-5"]}>
+                  {getDuration(track.duration_ms)}
                 </div>
               </div>
-              <div className={styles["item-3"]}>{track.album?.name}</div>
-              <div className={styles["item-4"]}>No</div>
-              <div className={styles["item-5"]}>
-                {getDuration(track.duration_ms)}
-              </div>
-            </div>
-          );
+            );
+          }
         })}
       </div>
     </div>

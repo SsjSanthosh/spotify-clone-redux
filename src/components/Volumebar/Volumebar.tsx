@@ -25,13 +25,28 @@ const Volumebar = () => {
   const VolumeIcon = () => {
     if (volume || volume === 0) {
       if (volume === 0) {
-        return <BsFillVolumeMuteFill className={styles["volume-icon"]} />;
+        return (
+          <BsFillVolumeMuteFill
+            className={styles["volume-icon"]}
+            onClick={() => changeVolume(50)}
+          />
+        );
       }
       if (volume > 0 && volume <= 70) {
-        return <BsFillVolumeDownFill className={styles["volume-icon"]} />;
+        return (
+          <BsFillVolumeDownFill
+            className={styles["volume-icon"]}
+            onClick={() => changeVolume(0)}
+          />
+        );
       }
       if (volume > 70) {
-        return <BsFillVolumeUpFill className={styles["volume-icon"]} />;
+        return (
+          <BsFillVolumeUpFill
+            className={styles["volume-icon"]}
+            onClick={() => changeVolume(0)}
+          />
+        );
       }
     }
     return null;
@@ -48,7 +63,7 @@ const Volumebar = () => {
               changeVolume(e.target.value as unknown as number);
             }}
             style={{
-              background: `linear-gradient(to right, #089c3c ${volume}%, #ccc ${volume}%)`,
+              background: `linear-gradient(to right, #a4a8a4 ${volume}%, #4b4a4a ${volume}%)`,
             }}
           />
         </div>

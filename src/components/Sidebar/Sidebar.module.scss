@@ -1,10 +1,11 @@
+@import "styles/variables";
 .container {
-  padding: 24px 24px;
+  padding: $sp-xl;
   display: flex;
   flex-direction: column;
   flex: 1;
-  row-gap: 36px;
-  color:#fff;
+  row-gap: $sp-xxl;
+  color: $font-dull;
 }
 .logo-container {
   position: relative;
@@ -15,7 +16,9 @@
 .navlinks-container {
   display: flex;
   flex-direction: column;
-  row-gap: 18px;
+  row-gap: $sp-lg;
+  font-size: $font-md + 1;
+  font-weight: bold;
 }
 
 .navlink-container,
@@ -31,7 +34,7 @@
 }
 
 .sidebar-divider {
-    border:0.2px solid rgba(54, 51, 51, 0.7);
+  border: 0.2px solid rgba(54, 51, 51, 0.7);
 }
 
 .navlink-icon {

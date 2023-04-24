@@ -22,6 +22,7 @@ const UserPill = () => {
     toast({
       description:
         "You've been logged out, click the button below to start using the app again.",
+      position: "top",
     });
     router.push("/login");
   };

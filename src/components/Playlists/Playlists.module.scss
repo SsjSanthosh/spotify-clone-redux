@@ -1,7 +1,18 @@
+@import "styles/variables";
 .container {
   overflow-y: scroll;
-  height:40vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
+  color: $font-dull;
   row-gap: 16px;
+}
+
+.playlist-item {
+  transition: all 0.2s ease;
+  font-weight: 300;
+  font-size: $font-md;
+  &:hover {
+    color: #fff;
+  }
 }

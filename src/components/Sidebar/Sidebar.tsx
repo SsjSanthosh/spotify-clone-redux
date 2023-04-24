@@ -10,7 +10,7 @@ const Sidebar = () => {
   return (
     <div className={styles["container"]}>
       <div className={styles["logo-container"]}>
-        <Image src={SpotifyLogo} alt="Spotify Logo" fill />
+        <Image src={SpotifyLogo} alt="Spotify Logo" fill priority />
       </div>
       {/* Navlinks */}
       <div className={styles["navlinks-container"]}>

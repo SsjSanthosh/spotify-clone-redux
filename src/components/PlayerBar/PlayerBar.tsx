@@ -17,11 +17,15 @@ import { useAppDispatch } from "redux/types";
 import Image from "next/image";
 import Volumebar from "components/Volumebar";
 import SongSeekBar from "components/SongSeekBar";
+import { useToast } from "@chakra-ui/react";
+import { nanoid } from "nanoid";
 
 const PlayerBar = () => {
   const { player } = useSelector(playerSelector);
   const dispatch = useAppDispatch();
-  const PlayIcon = () => {
+  const isPlayerActive = player?.is_playing || player?.device.is_active;
+  const toast = useToast();
+  const PlayPauseIcon = () => {
     return player?.is_playing ? (
       <AiFillPauseCircle className={styles["play-icon"]} onClick={pauseTrack} />
     ) : (
@@ -30,8 +34,8 @@ const PlayerBar = () => {
   };
   const RepeatIcon = () => {
     if (player) {
-      const repeat = player.repeat_state;
       // @TODO - handle this switch case better
+      const repeat = player.repeat_state;
       const className = `${styles["repeat-icon"]} ${
         repeat !== "off" && styles["active-icon"]
       }`;
@@ -41,50 +45,81 @@ const PlayerBar = () => {
         <BsRepeat1 className={className} onClick={toggleRepeat} />
       );
     }
-    return null;
+    return <BsRepeat className={styles["repeat-icon"]} />;
   };
+
+  const infoToast = () => {
+    const id = "info-toast";
+    if (!toast.isActive(id)) {
+      toast({
+        description:
+          "No active players. Please start a session on another device to use this app's playback features.",
+        position: "top",
+        id,
+      });
+    }
+  };
+
   const playNext = async () => {
-    await postData(PLAYER_NEXT_ENDPOINT, {});
-    dispatch(fetchPlayerData());
+    if (isPlayerActive) {
+      await postData(PLAYER_NEXT_ENDPOINT, {});
+      dispatch(fetchPlayerData());
+    } else infoToast();
   };
   const playPrev = async () => {
-    await postData(PLAYER_PREV_ENDPOINT, {});
-    dispatch(fetchPlayerData());
+    if (isPlayerActive) {
+      await postData(PLAYER_PREV_ENDPOINT, {});
+      dispatch(fetchPlayerData());
+    } else infoToast();
   };
+
   const toggleShuffle = async () => {
-    await putData(
-      PLAYER_SHUFFLE_ENDPOINT.replace(
-        "{state}",
-        !player?.shuffle_state as unknown as string
-      ),
-      {}
-    );
-    dispatch(fetchPlayerData());
+    if (isPlayerActive) {
+      await putData(
+        PLAYER_SHUFFLE_ENDPOINT.replace(
+          "{state}",
+          !player?.shuffle_state as unknown as string
+        ),
+        {}
+      );
+      dispatch(fetchPlayerData());
+    }
   };
+
   const toggleRepeat = async () => {
-    let state: string = "";
-    if (player?.repeat_state === "off") state = "context";
-    if (player?.repeat_state === "context") state = "track";
-    if (player?.repeat_state === "track") state = "off";
-    await putData(
-      PLAYER_REPEAT_ENDPOINT.replace("{state}", state as unknown as string),
-      {}
-    );
-    dispatch(fetchPlayerData());
+    if (isPlayerActive) {
+      let state: string = "";
+      if (player?.repeat_state === "off") state = "context";
+      if (player?.repeat_state === "context") state = "track";
+      if (player?.repeat_state === "track") state = "off";
+      await putData(
+        PLAYER_REPEAT_ENDPOINT.replace("{state}", state as unknown as string),
+        {}
+      );
+      dispatch(fetchPlayerData());
+    }
   };
   const playTrack = async () => {
-    await putData(PLAYER_PLAY_ENDPOINT, {});
-    dispatch(fetchPlayerData());
+    if (isPlayerActive) {
+      await putData(PLAYER_PLAY_ENDPOINT, {});
+      dispatch(fetchPlayerData());
+    } else {
+      infoToast();
+    }
   };
   const pauseTrack = async () => {
-    await putData(PLAYER_PAUSE_ENDPOINT, {});
-    dispatch(fetchPlayerData());
+    if (isPlayerActive) {
+      await putData(PLAYER_PAUSE_ENDPOINT, {});
+      dispatch(fetchPlayerData());
+    }
   };
+
   const track = player?.item;
+
   return (
     <div className={styles["container"]}>
       <div className={styles["track-container"]}>
-        {player?.is_playing && track && (
+        {isPlayerActive && track && (
           <div className={styles["track-info"]}>
             <div className={styles["track-image-container"]}>
               <Image
@@ -94,7 +129,7 @@ const PlayerBar = () => {
               />
             </div>
             <div className={styles["track-details"]}>
-              <h5>{track.name}</h5>
+              <p>{track.name}</p>
               <span>{track.artists?.map((art) => art.name).join(", ")}</span>
             </div>
           </div>
@@ -113,7 +148,7 @@ const PlayerBar = () => {
               className={styles["prev-icon"]}
               onClick={playPrev}
             />
-            <PlayIcon />
+            <PlayPauseIcon />
             <BiSkipNext className={styles["next-icon"]} onClick={playNext} />
             <RepeatIcon />
           </div>
