@@ -1,12 +1,30 @@
 import { useSelector } from "react-redux";
 import styles from "./UserPill.module.scss";
 import { Menu, MenuItem, MenuDivider } from "@szhsin/react-menu";
-import { userSelector } from "redux/userSlice";
+import { clearUser, userSelector } from "redux/userSlice";
 import Image from "next/image";
 import { AiFillCaretDown } from "react-icons/ai";
+import { useAppDispatch } from "redux/types";
+import { clearPlayer } from "redux/playerSlice";
+import { deleteToken } from "redux/authSlice";
+import { useRouter } from "next/router";
+import { useToast } from "@chakra-ui/react";
 const UserPill = () => {
   const { profile } = useSelector(userSelector);
+  const dispatch = useAppDispatch();
+  const toast = useToast();
+  const router = useRouter();
   if (!profile) return null;
+  const handleLogout = () => {
+    dispatch(clearUser());
+    dispatch(clearPlayer());
+    dispatch(deleteToken());
+    toast({
+      description:
+        "You've been logged out, click the button below to start using the app again.",
+    });
+    router.push("/login");
+  };
   return (
     <div className={styles["container"]}>
       <Menu
@@ -36,7 +54,7 @@ const UserPill = () => {
           <MenuItem>Your profile</MenuItem>
         </a>
         <MenuDivider />
-        <MenuItem>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>
   );

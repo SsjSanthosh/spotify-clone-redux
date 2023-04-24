@@ -31,6 +31,9 @@ export const playerSlice = createSlice({
         state.player.progress_ms = payload.position;
       }
     },
+    clearPlayer: (state) => {
+      state = initialState;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPlayerData.pending, (state) => {
@@ -51,7 +54,7 @@ export const playerSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setVolume, setProgress } = playerSlice.actions;
+export const { setVolume, setProgress, clearPlayer } = playerSlice.actions;
 export const playerSelector = (state: RootReduxState) => state.player;
 
 export default playerSlice.reducer;

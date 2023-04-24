@@ -31,7 +31,12 @@ export const fetchPlaylists = createAsyncThunk(
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    clearUser: (state) => {
+      state.profile = null;
+      state.error = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchProfile.pending, (state) => {
       state.loading = true;
@@ -64,6 +69,8 @@ export const userSlice = createSlice({
     });
   },
 });
+
+export const { clearUser } = userSlice.actions;
 
 export const userSelector = (state: RootReduxState) => state.user;
 
