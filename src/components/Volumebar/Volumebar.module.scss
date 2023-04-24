@@ -1,0 +1,98 @@
+@import "styles/variables";
+.container {
+  input[type="range"] {
+    -webkit-appearance: none;
+    cursor: pointer;
+    margin-right: 15px;
+    width: 150px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+
+    background-repeat: no-repeat;
+  }
+
+  /* Input Thumb */
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #a7a7a7;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background 0.3s ease-in-out;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #a7a7a7;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background 0.3s ease-in-out;
+  }
+
+  input[type="range"]::-ms-thumb {
+    -webkit-appearance: none;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #ff4500;
+    cursor: ew-resize;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background 0.3s ease-in-out;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    background: #a7a7a7;
+  }
+
+  input[type="range"]::-moz-range-thumb:hover {
+    background: #a7a7a7;
+  }
+
+  input[type="range"]::-ms-thumb:hover {
+    background: #a7a7a7;
+  }
+
+  /* Input Track */
+  input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  input[type="range"]::-moz-range-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  input[type="range"]::-ms-track {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+}
+
+.volume-bar {
+  display: flex;
+  align-items: center;
+  column-gap: $sp-sm;
+  &:hover {
+    .volume-icon {
+      color: #fff;
+    }
+  }
+  .volume-icon {
+    color: #a7a3a3;
+    transition: all 0.2s ease;
+    font-size: $font-lg * 1.7;
+  }
+}

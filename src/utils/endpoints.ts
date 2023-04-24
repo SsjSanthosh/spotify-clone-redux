@@ -25,3 +25,5 @@ export const PLAYER_PREV_ENDPOINT = "/me/player/previous";
 export const PLAYER_SHUFFLE_ENDPOINT = "/me/player/shuffle?state={state}";
 
 export const PLAYER_REPEAT_ENDPOINT = "/me/player/repeat?state={state}";
+
+export const VOLUME_ENDPOINT = "/me/player/volume?volume_percent={volume}";

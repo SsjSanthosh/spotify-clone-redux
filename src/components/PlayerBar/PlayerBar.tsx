@@ -15,6 +15,7 @@ import {
 } from "utils/endpoints";
 import { useAppDispatch } from "redux/types";
 import Image from "next/image";
+import Volumebar from "components/Volumebar";
 
 const PlayerBar = () => {
   const { player } = useSelector(playerSelector);
@@ -81,21 +82,23 @@ const PlayerBar = () => {
   const track = player?.item;
   return (
     <div className={styles["container"]}>
-      {player?.is_playing && track && (
-        <div className={styles["track-container"]}>
-          <div className={styles["track-image-container"]}>
-            <Image
-              src={track.album.images[0].url as string}
-              alt={track.name}
-              fill
-            />
+      <div>
+        {player?.is_playing && track && (
+          <div className={styles["track-container"]}>
+            <div className={styles["track-image-container"]}>
+              <Image
+                src={track.album.images[0].url as string}
+                alt={track.name}
+                fill
+              />
+            </div>
+            <div className={styles["track-details"]}>
+              <h5>{track.name}</h5>
+              <span>{track.artists?.map((art) => art.name).join(", ")}</span>
+            </div>
           </div>
-          <div className={styles["track-details"]}>
-            <h5>{track.name}</h5>
-            <span>{track.artists?.map((art) => art.name).join(", ")}</span>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
       <div className={styles["controls-container"]}>
         <BsShuffle
           className={`${styles["shuffle-icon"]} ${
@@ -109,6 +112,9 @@ const PlayerBar = () => {
           <BiSkipNext className={styles["next-icon"]} onClick={playNext} />
         </div>
         <RepeatIcon />
+      </div>
+      <div className={styles["volume-container"]}>
+        <Volumebar />
       </div>
     </div>
   );

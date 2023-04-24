@@ -4,13 +4,14 @@
   display: flex;
   padding: $sp-lg * 1.2 $sp-xl;
   position: relative;
+  justify-content:space-between;
 }
 
 .controls-container {
   display: flex;
   position: absolute;
   top: 0%;
-  left:50%;
+  left:45%;
   height: 100%;
   column-gap: $sp-xl;
   color: #fff;
@@ -68,4 +69,12 @@
   position: relative;
   width: 56px;
   height: 56px;
+}
+
+
+.volume-container {
+  width:200px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

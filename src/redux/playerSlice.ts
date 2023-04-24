@@ -20,7 +20,13 @@ export const fetchPlayerData = createAsyncThunk(
 export const playerSlice = createSlice({
   name: "player",
   initialState,
-  reducers: {},
+  reducers: {
+    setVolume: (state, { payload }) => {
+      if (state.player) {
+        state.player.device.volume_percent = payload.volume;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPlayerData.pending, (state) => {
       state.loading = true;
@@ -40,6 +46,7 @@ export const playerSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
+export const { setVolume } = playerSlice.actions;
 export const playerSelector = (state: RootReduxState) => state.player;
 
 export default playerSlice.reducer;
