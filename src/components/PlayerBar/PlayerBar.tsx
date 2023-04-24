@@ -16,6 +16,7 @@ import {
 import { useAppDispatch } from "redux/types";
 import Image from "next/image";
 import Volumebar from "components/Volumebar";
+import SongSeekBar from "components/SongSeekBar";
 
 const PlayerBar = () => {
   const { player } = useSelector(playerSelector);
@@ -82,9 +83,9 @@ const PlayerBar = () => {
   const track = player?.item;
   return (
     <div className={styles["container"]}>
-      <div>
+      <div className={styles["track-container"]}>
         {player?.is_playing && track && (
-          <div className={styles["track-container"]}>
+          <div className={styles["track-info"]}>
             <div className={styles["track-image-container"]}>
               <Image
                 src={track.album.images[0].url as string}
@@ -100,18 +101,26 @@ const PlayerBar = () => {
         )}
       </div>
       <div className={styles["controls-container"]}>
-        <BsShuffle
-          className={`${styles["shuffle-icon"]} ${
-            player?.shuffle_state && styles["active-icon"]
-          }`}
-          onClick={toggleShuffle}
-        />
-        <div className={styles["main-controls"]}>
-          <BiSkipPrevious className={styles["prev-icon"]} onClick={playPrev} />
-          <PlayIcon />
-          <BiSkipNext className={styles["next-icon"]} onClick={playNext} />
+        <div className={styles["main-controls-container"]}>
+          <div className={styles["main-controls-icons"]}>
+            <BsShuffle
+              className={`${styles["shuffle-icon"]} ${
+                player?.shuffle_state && styles["active-icon"]
+              }`}
+              onClick={toggleShuffle}
+            />
+            <BiSkipPrevious
+              className={styles["prev-icon"]}
+              onClick={playPrev}
+            />
+            <PlayIcon />
+            <BiSkipNext className={styles["next-icon"]} onClick={playNext} />
+            <RepeatIcon />
+          </div>
+          <div className={styles["main-controls-seekbar"]}>
+            <SongSeekBar />
+          </div>
         </div>
-        <RepeatIcon />
       </div>
       <div className={styles["volume-container"]}>
         <Volumebar />

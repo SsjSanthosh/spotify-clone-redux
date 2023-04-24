@@ -36,7 +36,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       dispatch(fetchPlayerData());
-    }, 5 * 1000);
+    }, 1 * 1000);
     return () => clearInterval(interval);
   }, [dispatch]);
 

@@ -12,3 +12,24 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5a585a #0f0f0f;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #5a585a;
+  border-radius: 2px;
+  border: 3px solid #5a585a;
+}
