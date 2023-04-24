@@ -38,7 +38,7 @@ export const USER_LINKS: UserActionLink[] = [
   },
   {
     icon: <AiOutlineHeart className={styles["navlink-user-action-icon"]} />,
-    link: "/liked-songs",
+    link: "/user-tracks",
     text: "Liked Songs",
     iconContainerClassName: "like-icon",
     key: nanoid(),

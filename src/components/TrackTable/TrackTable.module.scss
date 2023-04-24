@@ -5,21 +5,22 @@
 
 .header {
   display: flex;
-  padding-bottom: 8px;
   border-bottom: 0.2px solid rgba(179, 165, 165, 0.4);
   font-size: $font-md;
+  padding: $sp-lg;
 }
 .tracks {
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
-  padding: 16px 0;
+  padding:$sp-md;
 }
 .track {
+  border-radius: $sp-xs / 2;
   display: flex;
   cursor: pointer;
   font-size: $font-md;
   align-items: center;
+  padding: $sp-md $sp-lg;
   &:hover {
     background-color: rgba(179, 165, 165, 0.4);
   }

@@ -1,82 +1,87 @@
 import React, { useEffect, useState } from "react";
-import styles from "./PlaylistPage.module.scss";
+import styles from "./LikedSongsPage.module.scss";
 import ProtectedRoute from "components/ProtectedRoute";
 import AppLayout from "components/AppLayout";
 import { useRouter } from "next/router";
 import { fetchData } from "utils/functions";
-import { PLAYLIST_ENDPOINT } from "utils/endpoints";
-import { GenericObject } from "utils/types";
+import { USER_TRACKS_ENDPOINT } from "utils/endpoints";
+import { GenericObject, TrackType } from "utils/types";
 
-import Loader from "components/Loader";
 import Head from "next/head";
 import TrackTable from "components/TrackTable";
 import Image from "next/image";
 import { BsDot } from "react-icons/bs";
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+import { SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import { COMMON_SKELETON_PROPS } from "utils/constants";
+import { AiFillHeart } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { userSelector } from "redux/userSlice";
 
-const PlaylistHeader = ({ playlist }: { playlist: GenericObject }) => {
+const PageHeader = () => {
+  const user = useSelector(userSelector);
   return (
     <div className={styles["header"]}>
       <div className={styles["image-container"]}>
-        <Image src={playlist.images[0].url} alt={playlist.name} fill priority />
+        <Image
+          src="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"
+          fill
+          alt="heart"
+          priority
+        />
       </div>
       <div className={styles["header-content"]}>
         <h4>Playlist</h4>
-        <h1>{playlist.name}</h1>
-        <p>{playlist.description}</p>
+        <h1>Liked songs</h1>
         <div className={styles["playlist-owner-container"]}>
-          <h6>Created by {playlist.owner.display_name}</h6> <BsDot />
-          <h6>{playlist.total_tracks} songs</h6>
+          <h6>Created by {user.profile?.display_name}</h6>
         </div>
       </div>
     </div>
   );
 };
 
-const getPlaylistData = async (id: string) => {
-  return fetchData(PLAYLIST_ENDPOINT.replace("{playlist_id}", id));
+const getPlaylistData = async () => {
+  return fetchData(USER_TRACKS_ENDPOINT);
 };
 
-const PlaylistPage = () => {
+const LikedSongsPage = () => {
   const router = useRouter();
-  const [playlist, setPlaylist] = useState<GenericObject>({});
-  console.log({ playlist });
+  const [tracks, setTracks] = useState<TrackType[]>([]);
+  console.log({ tracks });
   useEffect(() => {
     const { query } = router;
-    const getData = async (id: string) => {
+    const getData = async () => {
       try {
-        const data = await getPlaylistData(id);
-        data.total_tracks = data.tracks.total;
-        data.tracks = data.tracks.items.map((t: GenericObject) => {
+        let data = await getPlaylistData();
+        data = data.items.map((t: GenericObject) => {
           // flatten track for easy typing and rendering
           const newTrack = { ...t, ...t.track };
           delete newTrack.track;
           return newTrack;
         });
-        setPlaylist(data);
+        console.log({ data });
+        setTracks(data);
       } catch (err) {
         console.log({ err });
       }
     };
-    if (query.id) {
-      getData(query.id as string);
-    }
+
+    getData();
   }, [router]);
   return (
     <ProtectedRoute>
       <AppLayout>
-        {playlist.id ? (
+        {tracks.length ? (
           <main>
             <Head>
-              <title>{playlist.name}</title>
+              <title>Liked songs</title>
             </Head>
             <div className={styles["container"]}>
               <div className={styles["header"]}>
-                <PlaylistHeader playlist={playlist} />
+                <PageHeader />
               </div>
               <div className={styles["content"]}>
-                <TrackTable tracks={playlist.tracks} />
+                <TrackTable tracks={tracks} />
               </div>
             </div>
           </main>
@@ -100,4 +105,4 @@ const PlaylistPage = () => {
   );
 };
 
-export default PlaylistPage;
+export default LikedSongsPage;

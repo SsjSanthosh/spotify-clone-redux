@@ -29,12 +29,14 @@ const Sidebar = () => {
       <div className={styles["navlinks-container"]}>
         {USER_LINKS.map((userLink: UserActionLink) => {
           return (
-            <div className={styles["userlink-container"]} key={userLink.key}>
-              <div className={`${styles["userlink-icon-container"]}`}>
-                {userLink.icon}
+            <Link href={userLink.link as string} key={userLink.key}>
+              <div className={styles["userlink-container"]}>
+                <div className={`${styles["userlink-icon-container"]}`}>
+                  {userLink.icon}
+                </div>
+                <span className={styles["navlink-link"]}>{userLink.text}</span>
               </div>
-              <span className={styles["navlink-link"]}>{userLink.text}</span>
-            </div>
+            </Link>
           );
         })}
       </div>

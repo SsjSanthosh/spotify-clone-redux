@@ -29,3 +29,8 @@ export const PLAYER_REPEAT_ENDPOINT = "/me/player/repeat?state={state}";
 export const VOLUME_ENDPOINT = "/me/player/volume?volume_percent={volume}";
 
 export const SEEK_ENDPOINT = "/me/player/seek?position_ms={position}";
+
+export const USER_TRACKS_ENDPOINT = "/me/tracks?limit=50";
+
+export const FEATURED_PLAYLISTS_ENDPOINT =
+  "/browse/featured-playlists?country=IN&limit=30";

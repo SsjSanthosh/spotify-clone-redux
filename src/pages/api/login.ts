@@ -14,6 +14,8 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
     "user-read-currently-playing",
     "user-read-recently-played",
     "user-top-read",
+    "playlist-read-private",
+    "user-library-read",
   ];
   const response_type = "token";
   const client_id = process.env.CLIENT_ID;
