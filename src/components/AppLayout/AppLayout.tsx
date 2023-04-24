@@ -32,6 +32,10 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     }
   }, [user.profile, dispatch, user.playlists]);
 
+  useEffect(() => {
+    dispatch(fetchPlayerData());
+  }, []);
+
   // fetch player
   useEffect(() => {
     const interval = setInterval(() => {

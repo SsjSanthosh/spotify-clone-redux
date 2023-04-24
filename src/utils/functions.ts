@@ -1,7 +1,11 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import { BASE_ENDPOINT } from "./constants";
+import dayjs from "dayjs";
 import { GenericObject } from "./types";
+
+var duration = require("dayjs/plugin/duration");
+dayjs.extend(duration);
 
 export const isTokenAvailable = () => {
   return Cookies.get("token");
@@ -39,4 +43,8 @@ export const putData = async (resource: string, body: GenericObject) => {
 export const trimString = (str: string, limit: number) => {
   if (str.length < limit) return str;
   return str.slice(0, limit) + "...";
+};
+
+export const getDuration = (duration_ms: number) => {
+  return dayjs.duration(duration_ms).format("mm:ss");
 };

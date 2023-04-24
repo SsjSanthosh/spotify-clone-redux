@@ -26,6 +26,11 @@ export const playerSlice = createSlice({
         state.player.device.volume_percent = payload.volume;
       }
     },
+    setProgress: (state, { payload }) => {
+      if (state.player) {
+        state.player.progress_ms = payload.position;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchPlayerData.pending, (state) => {
@@ -46,7 +51,7 @@ export const playerSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setVolume } = playerSlice.actions;
+export const { setVolume, setProgress } = playerSlice.actions;
 export const playerSelector = (state: RootReduxState) => state.player;
 
 export default playerSlice.reducer;

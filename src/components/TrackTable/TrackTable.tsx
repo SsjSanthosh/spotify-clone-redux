@@ -7,6 +7,7 @@ import Image from "next/image";
 import { playPauseResource } from "utils/playbackFunctions";
 import { useAppDispatch } from "redux/types";
 import { fetchPlayerData } from "redux/playerSlice";
+import { getDuration } from "utils/functions";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -56,7 +57,7 @@ const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
               <div className={styles["item-3"]}>{track.album?.name}</div>
               <div className={styles["item-4"]}>No</div>
               <div className={styles["item-5"]}>
-                {dayjs(track.duration_ms).format("mm:ss")}
+                {getDuration(track.duration_ms)}
               </div>
             </div>
           );
