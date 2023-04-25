@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./TrackTable.module.scss";
 
-import { TrackType } from "utils/types";
+import { GenericObject, TrackType } from "utils/types";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { playPauseResource } from "utils/playbackFunctions";
@@ -15,7 +15,15 @@ import SpotifyLink from "components/SpotifyLink";
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
 
-const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
+const TrackTable = ({
+  tracks,
+  album = false,
+  albumInfo = null,
+}: {
+  tracks: TrackType[];
+  album: boolean;
+  albumInfo: null | GenericObject;
+}) => {
   const dispatch = useAppDispatch();
   const handleTrack = async (track: TrackType) => {
     await playPauseResource({ uris: [track.uri] });
@@ -33,7 +41,7 @@ const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
       <div className={styles["tracks"]}>
         {tracks.map((track: TrackType, idx: number) => {
           if (!!track.name.length) {
-            const imageSrc = !!track.album.images.length
+            const imageSrc = !!track.album?.images.length
               ? track.album.images[0].url
               : FALLBACK_IMAGE;
             return (
@@ -42,14 +50,16 @@ const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
                 <div
                   className={`${styles["item-2"]} ${styles["track-container"]}`}
                 >
-                  <div className={styles["track-image"]}>
-                    <Image
-                      src={imageSrc}
-                      width={40}
-                      height={40}
-                      alt={track.album.name}
-                    />
-                  </div>
+                  {!album && (
+                    <div className={styles["track-image"]}>
+                      <Image
+                        src={imageSrc}
+                        width={40}
+                        height={40}
+                        alt={track.album.name}
+                      />
+                    </div>
+                  )}
                   <div className={styles["track-title"]}>
                     <p
                       className={styles["track-name"]}
@@ -72,8 +82,8 @@ const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
                 <div className={styles["item-3"]}>
                   <p className={styles["track-album"]}>
                     <SpotifyLink
-                      text={track.album?.name}
-                      link={`/album/${track.album.id}`}
+                      text={album ? albumInfo?.name : track.album.name}
+                      link={`/album/${album ? albumInfo?.id : track.album.id}`}
                     />
                   </p>
                 </div>

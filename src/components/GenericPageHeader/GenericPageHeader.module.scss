@@ -1,0 +1,59 @@
+@import "styles/variables";
+.container {
+  background-color: $background-color;
+}
+
+.header {
+  display: flex;
+  column-gap: $sp-xxxl;
+  color: #fff;
+  margin-bottom: $sp-xl;
+  padding: $sp-lg $sp-xxxl;
+}
+
+.image-container {
+  width: 230px;
+  height: 230px;
+  position: relative;
+  box-shadow: 1px 15px 27px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 1px 15px 27px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 1px 15px 27px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-transform: capitalize;
+  row-gap: $sp-lg;
+  h1 {
+    font-size: $font-lg * 3;
+    font-weight: bold;
+    margin: 0;
+  }
+  h4 {
+    font-weight: 500;
+  }
+}
+
+.header-description,
+.artist-container,
+.desc-container {
+  display: flex;
+  align-items: center;
+  column-gap: $sp-xs;
+}
+
+.seperator {
+  font-size: $font-lg * 2;
+}
+.playlist-owner-container {
+  display: flex;
+  align-items: center;
+  h6 {
+    font-weight: 400;
+  }
+}

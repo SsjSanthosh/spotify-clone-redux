@@ -25,10 +25,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 $sp-xl;
-  padding: $sp-xl;
+
+  padding: $sp-xl $sp-xl * 2;
   height: 10vh;
-  overflow-y: auto;
 }
 
 .page-content {

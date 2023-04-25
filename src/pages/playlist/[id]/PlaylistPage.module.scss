@@ -1,58 +1,8 @@
 @import "styles/variables";
 
-.skeleton-header-container {
-  margin-bottom: $sp-xxl;
-}
-.skeleton-container {
-  padding: $sp-xl;
-}
-
 .container {
   background-color: $background-color;
   padding: $sp-xxl $sp-xxxl;
-  height: 80vh;
 }
 
-.header {
-  display: flex;
-  column-gap: $sp-xxxl;
-  color: #fff;
-  margin-bottom: $sp-xl;
-}
 
-.image-container {
-  width: 230px;
-  height: 230px;
-  position: relative;
-  box-shadow: 1px 15px 27px 0px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 1px 15px 27px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 1px 15px 27px 0px rgba(0, 0, 0, 0.75);
-}
-
-.header-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  row-gap: $sp-lg;
-  h1 {
-    font-size: 64px;
-    font-weight: bold;
-    margin: 0;
-  }
-  h4 {
-    font-weight: 500;
-  }
-}
-
-.playlist-owner-container {
-  display: flex;
-  align-items: center;
-  h6 {
-    font-weight: 400;
-  }
-}
-
-.content {
-  height: 40vh;
-  overflow-y: auto;
-}

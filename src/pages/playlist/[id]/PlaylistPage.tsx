@@ -5,7 +5,11 @@ import AppLayout from "components/AppLayout";
 import { useRouter } from "next/router";
 import { fetchData } from "utils/functions";
 import { PLAYLIST_ENDPOINT } from "utils/endpoints";
-import { GenericObject } from "utils/types";
+import {
+  GenericObject,
+  GenericPageHeaderType,
+  PlaylistType,
+} from "utils/types";
 
 import Loader from "components/Loader";
 import Head from "next/head";
@@ -13,9 +17,11 @@ import TrackTable from "components/TrackTable";
 import Image from "next/image";
 import { BsDot } from "react-icons/bs";
 import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
-import { COMMON_SKELETON_PROPS } from "utils/constants";
+import { COMMON_SKELETON_PROPS, FALLBACK_IMAGE } from "utils/constants";
+import GenericPageSkeleton from "components/GenericPageSkeleton";
+import GenericPageHeader from "components/GenericPageHeader";
 
-const PlaylistHeader = ({ playlist }: { playlist: GenericObject }) => {
+const PlaylistHeader = ({ playlist }: { playlist: PlaylistType }) => {
   return (
     <div className={styles["header"]}>
       <div className={styles["image-container"]}>
@@ -40,7 +46,7 @@ const getPlaylistData = async (id: string) => {
 
 const PlaylistPage = () => {
   const router = useRouter();
-  const [playlist, setPlaylist] = useState<GenericObject>({});
+  const [playlist, setPlaylist] = useState<PlaylistType | null>(null);
   useEffect(() => {
     const { query } = router;
     const getData = async (id: string) => {
@@ -58,42 +64,51 @@ const PlaylistPage = () => {
         console.log({ err });
       }
     };
+    setPlaylist(null);
     if (query.id) {
       getData(query.id as string);
     }
   }, [router]);
+  if (!playlist) {
+    return (
+      <ProtectedRoute>
+        <AppLayout>
+          <GenericPageSkeleton />
+        </AppLayout>
+      </ProtectedRoute>
+    );
+  }
+  const header: GenericPageHeaderType = {
+    type: "playlist",
+    title: playlist.name,
+    image: !!playlist.images.length ? playlist.images[0].url : FALLBACK_IMAGE,
+    descriptions: [
+      {
+        type: "text",
+        renderItems: `Created by ${playlist.owner.display_name}`,
+      },
+      {
+        type: "text",
+        renderItems: `${playlist.total_tracks} tracks`,
+      },
+    ],
+  };
   return (
     <ProtectedRoute>
       <AppLayout>
-        {playlist.id ? (
-          <main>
-            <Head>
-              <title>{playlist.name}</title>
-            </Head>
-            <div className={styles["container"]}>
-              <div className={styles["header"]}>
-                <PlaylistHeader playlist={playlist} />
-              </div>
-              <div className={styles["content"]}>
-                <TrackTable tracks={playlist.tracks} />
-              </div>
-            </div>
-          </main>
-        ) : (
-          <div className={styles["skeleton-container"]}>
-            <div className={styles["skeleton-header-container"]}>
-              <SkeletonCircle size="250" {...COMMON_SKELETON_PROPS} />
-            </div>
-            <div>
-              <SkeletonText
-                noOfLines={12}
-                spacing={4}
-                height={200}
-                {...COMMON_SKELETON_PROPS}
-              />
-            </div>
+        <main>
+          <Head>
+            <title>{playlist.name}</title>
+          </Head>
+          <div className={styles["container"]}>
+            <GenericPageHeader header={header} />
+            <TrackTable
+              tracks={playlist.tracks}
+              album={false}
+              albumInfo={null}
+            />
           </div>
-        )}
+        </main>
       </AppLayout>
     </ProtectedRoute>
   );

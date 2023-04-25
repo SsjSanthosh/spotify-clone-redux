@@ -1,6 +1,7 @@
 @import "styles/variables";
 .container {
   display: inline-block;
+
 }
 
 .search-form {
@@ -14,6 +15,7 @@
   left: $sp-md;
   position: absolute;
   font-size: $sp-xl;
+  background-color: #fff;
 }
 
 .search-close-icon {
@@ -22,9 +24,11 @@
   right: $sp-md;
   cursor: pointer;
   color: #000;
+  background-color: #fff;
 }
 
 .search-input {
+  background-color: #fff;
   padding: $sp-md $sp-xl * 2;
   width: 160px;
   border-radius: $sp-xl;

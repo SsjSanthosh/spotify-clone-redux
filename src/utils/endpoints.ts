@@ -34,3 +34,7 @@ export const USER_TRACKS_ENDPOINT = "/me/tracks?limit=50";
 
 export const FEATURED_PLAYLISTS_ENDPOINT =
   "/browse/featured-playlists?country=IN&limit=30";
+
+export const ARTIST_ENDPOINT = "/artists/{id}";
+
+export const ALBUM_ENDPOINT = "/albums/{id}";

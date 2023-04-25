@@ -103,6 +103,7 @@ export interface PlaylistType {
   images: SpotifyImageType[];
   name: string;
   uri: string;
+  total_tracks?: number;
   owner: {
     display_name: string;
   };
@@ -119,6 +120,7 @@ export interface AlbumType {
   total_tracks: number;
   uri: string;
   id: string;
+  tracks: { items: TrackType[] };
 }
 
 export interface TrackType {
@@ -130,4 +132,14 @@ export interface TrackType {
   track_number: number;
   duration_ms: number;
   uri: string;
+}
+
+export interface GenericPageHeaderType {
+  title: string;
+  descriptions: {
+    type: "artists" | "text";
+    renderItems: ArtistType[] | string;
+  }[];
+  image: string;
+  type: string;
 }

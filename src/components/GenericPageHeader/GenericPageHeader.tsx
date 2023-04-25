@@ -1,0 +1,52 @@
+import { GenericPageHeaderType } from "utils/types";
+import styles from "./GenericPageHeader.module.scss";
+import Image from "next/image";
+import SpotifyLink from "components/SpotifyLink";
+import { BsDot } from "react-icons/bs";
+import { nanoid } from "nanoid";
+
+const GenericPageHeader = ({ header }: { header: GenericPageHeaderType }) => {
+  const PageHeader = () => {
+    const Seperator = () => <BsDot className={styles["seperator"]} />;
+    return (
+      <div className={styles["header"]}>
+        <div className={styles["image-container"]}>
+          <Image src={header.image} fill alt={header.title} priority />
+        </div>
+        <div className={styles["header-content"]}>
+          <h4>{header.type}</h4>
+          <h1>{header.title}</h1>
+          <div className={styles["header-description"]}>
+            {header.descriptions.map((des, odx) => {
+              const { type } = des;
+              if (type === "artists" && Array.isArray(des.renderItems)) {
+                return des.renderItems.map((art) => {
+                  return (
+                    <p className={styles["artist-container"]} key={art.id}>
+                      <SpotifyLink text={art.name} link={`/artist/${art.id}`} />
+                      <Seperator />
+                    </p>
+                  );
+                });
+              } else if (!Array.isArray(des.renderItems)) {
+                return (
+                  <p className={styles["desc-container"]} key={nanoid()}>
+                    {des.renderItems}
+                    {odx !== header.descriptions.length - 1 && <Seperator />}
+                  </p>
+                );
+              }
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  };
+  return (
+    <div>
+      <PageHeader />
+    </div>
+  );
+};
+
+export default GenericPageHeader;
