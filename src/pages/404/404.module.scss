@@ -1,0 +1,20 @@
+@import "styles/variables";
+.container {
+  background-color: #000;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: $sp-xl;
+  justify-content: center;
+  h1 {
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+  }
+  h1,
+  button {
+    font-weight: 300;
+  }
+}
