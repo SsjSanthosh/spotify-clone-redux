@@ -70,13 +70,7 @@ const PlaylistPage = () => {
     }
   }, [router]);
   if (!playlist) {
-    return (
-      <ProtectedRoute>
-        <AppLayout>
-          <GenericPageSkeleton />
-        </AppLayout>
-      </ProtectedRoute>
-    );
+    return <GenericPageSkeleton />;
   }
   const header: GenericPageHeaderType = {
     type: "playlist",

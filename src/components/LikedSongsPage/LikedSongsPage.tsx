@@ -5,40 +5,18 @@ import AppLayout from "components/AppLayout";
 import { useRouter } from "next/router";
 import { fetchData } from "utils/functions";
 import { USER_TRACKS_ENDPOINT } from "utils/endpoints";
-import { GenericObject, TrackType } from "utils/types";
+import { GenericObject, GenericPageHeaderType, TrackType } from "utils/types";
 
 import Head from "next/head";
 import TrackTable from "components/TrackTable";
-import Image from "next/image";
-import { BsDot } from "react-icons/bs";
-import { SkeletonCircle, SkeletonText } from "@chakra-ui/react";
-import { COMMON_SKELETON_PROPS } from "utils/constants";
-import { AiFillHeart } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { userSelector } from "redux/userSlice";
+import GenericPageSkeleton from "components/GenericPageSkeleton";
+import GenericPageHeader from "components/GenericPageHeader";
 
-const PageHeader = () => {
-  const user = useSelector(userSelector);
-  return (
-    <div className={styles["header"]}>
-      <div className={styles["image-container"]}>
-        <Image
-          src="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"
-          fill
-          alt="heart"
-          priority
-        />
-      </div>
-      <div className={styles["header-content"]}>
-        <h4>Playlist</h4>
-        <h1>Liked songs</h1>
-        <div className={styles["playlist-owner-container"]}>
-          <h6>Created by {user.profile?.display_name}</h6>
-        </div>
-      </div>
-    </div>
-  );
-};
+const LIKED_SONGS_IMAGE =
+  "https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png";
+
 
 const getPlaylistData = async () => {
   return fetchData(USER_TRACKS_ENDPOINT);
@@ -47,6 +25,7 @@ const getPlaylistData = async () => {
 const LikedSongsPage = () => {
   const router = useRouter();
   const [tracks, setTracks] = useState<TrackType[]>([]);
+  const user = useSelector(userSelector);
   console.log({ tracks });
   useEffect(() => {
     const { query } = router;
@@ -68,38 +47,33 @@ const LikedSongsPage = () => {
 
     getData();
   }, [router]);
+  if (!tracks.length) {
+    return <GenericPageSkeleton />;
+  }
+  const header: GenericPageHeaderType = {
+    title: "Your liked songs",
+    image: LIKED_SONGS_IMAGE,
+    type: "playlist",
+    descriptions: [
+      { type: "text", renderItems: `Created by ${user.profile?.display_name}` },
+    ],
+  };
   return (
     <ProtectedRoute>
       <AppLayout>
-        {tracks.length ? (
-          <main>
-            <Head>
-              <title>Liked songs</title>
-            </Head>
-            <div className={styles["container"]}>
-              <div className={styles["header"]}>
-                <PageHeader />
-              </div>
-              <div className={styles["content"]}>
-                <TrackTable tracks={tracks} />
-              </div>
+        <main>
+          <Head>
+            <title>Liked songs</title>
+          </Head>
+          <div className={styles["container"]}>
+            <div className={styles["header"]}>
+              <GenericPageHeader header={header} />
             </div>
-          </main>
-        ) : (
-          <div className={styles["skeleton-container"]}>
-            <div className={styles["skeleton-header-container"]}>
-              <SkeletonCircle size="250" {...COMMON_SKELETON_PROPS} />
-            </div>
-            <div>
-              <SkeletonText
-                noOfLines={12}
-                spacing={4}
-                height={200}
-                {...COMMON_SKELETON_PROPS}
-              />
+            <div className={styles["content"]}>
+              <TrackTable tracks={tracks} album={false} albumInfo={null} />
             </div>
           </div>
-        )}
+        </main>
       </AppLayout>
     </ProtectedRoute>
   );

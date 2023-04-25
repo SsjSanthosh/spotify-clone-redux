@@ -32,13 +32,7 @@ const AlbumPage = () => {
   }, [query]);
 
   if (!album) {
-    return (
-      <ProtectedRoute>
-        <AppLayout>
-          <GenericPageSkeleton />
-        </AppLayout>
-      </ProtectedRoute>
-    );
+    return <GenericPageSkeleton />;
   }
 
   const header: GenericPageHeaderType = {
