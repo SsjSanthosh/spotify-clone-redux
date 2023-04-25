@@ -35,7 +35,6 @@ const LikedSongsPage = () => {
           delete newTrack.track;
           return newTrack;
         });
-        console.log({ data });
         setTracks(data);
       } catch (err) {
         console.log({ err });

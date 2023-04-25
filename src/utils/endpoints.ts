@@ -38,3 +38,9 @@ export const FEATURED_PLAYLISTS_ENDPOINT =
 export const ARTIST_ENDPOINT = "/artists/{id}";
 
 export const ALBUM_ENDPOINT = "/albums/{id}";
+
+export const ARTIST_TOP_TRACKS_ENDPOINT = `/artists/{id}/top-tracks?market=IN`;
+
+export const ARTIST_ALBUMS_ENDPOINT = `/artists/{id}/albums?include_groups=single,appears_on&market=IN`;
+
+export const RELATED_ARTISTS_ENDPOINT = `/artists/{id}/related-artists`;

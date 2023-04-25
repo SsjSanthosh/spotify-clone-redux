@@ -1,3 +1,15 @@
 @import "styles/variables";
 .container {
+  padding: $sp-xl $sp-xl * 2;
+  section {
+    margin: $sp-xl 0;
+  }
+}
+
+.albums-container,
+.artists-container {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: $sp-xl;
+  column-gap: $sp-xl;
 }

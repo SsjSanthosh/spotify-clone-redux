@@ -3,12 +3,7 @@ import styles from "./SearchPage.module.scss";
 import AppLayout from "components/AppLayout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {
-  AlbumType,
-  ArtistType,
-  PlaylistType,
-  TrackType,
-} from "utils/types";
+import { AlbumType, ArtistType, PlaylistType, TrackType } from "utils/types";
 import { fetchData } from "utils/functions";
 import { SEARCH_ENDPOINT } from "utils/endpoints";
 import TrackTable from "components/TrackTable";
@@ -24,13 +19,12 @@ interface SearchType {
   artists: null | ArtistType[];
 }
 
-
 export const SEARCH_TYPES = ["artists", "playlists", "tracks", "albums"];
 
 const SearchCategoryButton = ({
   query,
   type,
-  highlight
+  highlight,
 }: {
   query: string;
   type: string;
@@ -38,7 +32,13 @@ const SearchCategoryButton = ({
 }) => {
   return (
     <Link href={`/search?q=${query}&type=${type}`}>
-      <button className={`${styles['search-category-btn']} ${highlight && styles['search-category-active']}`}>{type}</button>
+      <button
+        className={`${styles["search-category-btn"]} ${
+          highlight && styles["search-category-active"]
+        }`}
+      >
+        {type}
+      </button>
     </Link>
   );
 };
@@ -74,7 +74,9 @@ const SearchPage = () => {
 
   const renderSection = () => {
     if (type === "tracks" && results.tracks) {
-      return <TrackTable tracks={results.tracks} />;
+      return (
+        <TrackTable tracks={results.tracks} album={false} albumInfo={null} />
+      );
     }
     if (type === "albums" && results.albums) {
       return (
@@ -89,8 +91,8 @@ const SearchPage = () => {
       return (
         <div className={styles["albums-container"]}>
           {results.playlists.map((play) => {
-            return <PlaylistCard key={play.id} playlist={play} />
-          })} 
+            return <PlaylistCard key={play.id} playlist={play} />;
+          })}
         </div>
       );
     }
@@ -98,13 +100,12 @@ const SearchPage = () => {
       return (
         <div className={styles["albums-container"]}>
           {results.artists.map((art) => {
-            return <ArtistCard key={art.id} artist={art} />
-          })} 
+            return <ArtistCard key={art.id} artist={art} />;
+          })}
         </div>
       );
     }
   };
-  
 
   return (
     <ProtectedRoute>

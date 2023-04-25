@@ -1,13 +1,16 @@
-import { ArtistType, PlaylistType } from "utils/types";
+import { ArtistProfile, ArtistType, PlaylistType } from "utils/types";
 import styles from "./ArtistCard.module.scss";
 import Image from "next/image";
 import { trimString } from "utils/functions";
 import PlayIcon from "components/PlayIcon";
+import { FALLBACK_IMAGE } from "utils/constants";
 
-const ArtistCard = ({ artist }: { artist: ArtistType }) => {
+const ArtistCard = ({ artist }: { artist: ArtistType | ArtistProfile }) => {
   const artistImage = !artist.images.length
-    ? "https://w7.pngwing.com/pngs/427/957/png-transparent-musical-note-musical-note-rectangle-monochrome-musical-notation-thumbnail.png"
+    ? FALLBACK_IMAGE
     : artist.images[0].url;
+  
+  
   return (
     <div className={styles["container"]}>
       <div className={styles["image-container"]}>

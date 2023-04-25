@@ -23,6 +23,13 @@
   align-items: center;
 }
 
+.image-container-border-radius {
+  border-radius: 230px;
+  > img {
+    border-radius: 230px;
+  }
+}
+
 .header-content {
   display: flex;
   flex-direction: column;

@@ -11,7 +11,13 @@ import { putData, trimString } from "utils/functions";
 import { PLAYER_PAUSE_ENDPOINT, PLAYER_PLAY_ENDPOINT } from "utils/endpoints";
 import { useToast } from "@chakra-ui/react";
 
-const GenericPageHeader = ({ header }: { header: GenericPageHeaderType }) => {
+const GenericPageHeader = ({
+  header,
+  imageType = "square",
+}: {
+  header: GenericPageHeaderType;
+  imageType?: "square" | "circle";
+}) => {
   const Seperator = () => <BsDot className={styles["seperator"]} />;
   const { player } = useSelector(playerSelector);
   const toast = useToast();
@@ -36,7 +42,7 @@ const GenericPageHeader = ({ header }: { header: GenericPageHeaderType }) => {
           description:
             "No active player, please try again after starting a session on another playback device.",
           status: "info",
-          position:"top",
+          position: "top",
           id,
         });
       }
@@ -44,13 +50,17 @@ const GenericPageHeader = ({ header }: { header: GenericPageHeaderType }) => {
   };
   return (
     <div className={styles["header"]}>
-      <div className={styles["image-container"]}>
+      <div
+        className={`${styles["image-container"]} ${
+          imageType === "circle" && styles["image-container-border-radius"]
+        }`}
+      >
         <Image src={header.image} fill alt={header.title} priority />
       </div>
       <div className={styles["header-content"]}>
         <h4>{header.type}</h4>
         <div className={styles["header-play-container"]}>
-          <h1>{trimString(header.title,20)}</h1>
+          <h1>{trimString(header.title, 20)}</h1>
           {header.showPlayButton && (
             <PlayPauseButton
               onClick={handlePlayClick}

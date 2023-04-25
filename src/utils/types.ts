@@ -145,3 +145,17 @@ export interface GenericPageHeaderType {
   uri?: string;
   showPlayButton: boolean;
 }
+
+export interface ArtistProfile {
+  followers: {
+    href: string | null;
+    total: number;
+  };
+  genres: string[];
+  id: string;
+  images: SpotifyImageType[];
+  name: string;
+  popularity: number;
+  uri: string;
+  type: string;
+}
