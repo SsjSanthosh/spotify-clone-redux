@@ -29,7 +29,7 @@ const GenrePage = () => {
           {!!genres.length &&
             genres.map((genre: GenreType) => {
               return (
-                <Link href={"/category/" + genre.id} key={genre.id}>
+                <Link href={"/search?q=" + genre.name} key={genre.id}>
                   <GenreCard genre={genre} />
                 </Link>
               );
