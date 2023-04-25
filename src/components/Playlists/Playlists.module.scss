@@ -1,6 +1,6 @@
 @import "styles/variables";
 .skeleton-container {
- margin:10% 0;
+  margin: 10% 0;
 }
 .container {
   overflow-y: scroll;
@@ -15,7 +15,15 @@
   transition: all 0.2s ease;
   font-weight: 300;
   font-size: $font-md;
+  display: flex;
+  align-items: center;
+  padding-right:$sp-lg;
+  justify-content: space-between;
   &:hover {
     color: #fff;
   }
+}
+
+.playlist-active {
+  color:$primary;
 }

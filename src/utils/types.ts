@@ -142,4 +142,6 @@ export interface GenericPageHeaderType {
   }[];
   image: string;
   type: string;
+  uri?: string;
+  showPlayButton: boolean;
 }

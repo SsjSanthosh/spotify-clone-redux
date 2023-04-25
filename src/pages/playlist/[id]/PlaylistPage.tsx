@@ -76,6 +76,8 @@ const PlaylistPage = () => {
     type: "playlist",
     title: playlist.name,
     image: !!playlist.images.length ? playlist.images[0].url : FALLBACK_IMAGE,
+    showPlayButton: true,
+    uri: playlist.uri,
     descriptions: [
       {
         type: "text",

@@ -17,7 +17,6 @@ import GenericPageHeader from "components/GenericPageHeader";
 const LIKED_SONGS_IMAGE =
   "https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png";
 
-
 const getPlaylistData = async () => {
   return fetchData(USER_TRACKS_ENDPOINT);
 };
@@ -26,9 +25,7 @@ const LikedSongsPage = () => {
   const router = useRouter();
   const [tracks, setTracks] = useState<TrackType[]>([]);
   const user = useSelector(userSelector);
-  console.log({ tracks });
   useEffect(() => {
-    const { query } = router;
     const getData = async () => {
       try {
         let data = await getPlaylistData();
@@ -57,6 +54,7 @@ const LikedSongsPage = () => {
     descriptions: [
       { type: "text", renderItems: `Created by ${user.profile?.display_name}` },
     ],
+    showPlayButton: false,
   };
   return (
     <ProtectedRoute>

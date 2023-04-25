@@ -1,3 +1,14 @@
 @import "styles/variables";
 .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-icon-green {
+  color: $primary;
+}
+
+.play-icon-white {
+  color: #fff;
 }

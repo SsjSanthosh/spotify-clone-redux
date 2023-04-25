@@ -50,10 +50,13 @@
 .seperator {
   font-size: $font-lg * 2;
 }
-.playlist-owner-container {
+
+.header-play-container {
   display: flex;
   align-items: center;
-  h6 {
-    font-weight: 400;
+  column-gap: $sp-md;
+  h1 {
+    margin: 0;
+    width:100%;
   }
 }

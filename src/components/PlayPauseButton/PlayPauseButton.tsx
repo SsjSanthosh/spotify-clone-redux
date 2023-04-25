@@ -5,18 +5,23 @@ const PlayPauseButton = ({
   onClick,
   isPlaying,
   color,
+  size,
 }: {
   onClick: () => void;
   isPlaying: boolean;
   color: string;
+  size: number;
 }) => {
-  const className = `${styles["play-icon"]} ${styles[`play-icon-${color}`]}`;
+  const props = {
+    className: `${styles["play-icon"]} ${styles[`play-icon-${color}`]}`,
+    size,
+  };
   return (
     <div className={styles["container"]} onClick={onClick}>
       {isPlaying ? (
-        <AiFillPauseCircle className={className} />
+        <AiFillPauseCircle {...props} />
       ) : (
-        <AiFillPlayCircle className={className} />
+        <AiFillPlayCircle {...props} />
       )}
     </div>
   );
