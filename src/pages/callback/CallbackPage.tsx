@@ -6,10 +6,11 @@ import queryString from "query-string";
 import { useAppDispatch } from "redux/types";
 import { authSelector, setToken } from "redux/authSlice";
 import { useSelector } from "react-redux";
+import { SkeletonText } from "@chakra-ui/react";
+import { COMMON_SKELETON_PROPS } from "utils/constants";
 const CallbackPage = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const auth = useSelector(authSelector);
   useEffect(() => {
     const query = queryString.parse(window.location.hash);
     if (!query.access_token) {
@@ -22,7 +23,9 @@ const CallbackPage = () => {
 
   return (
     <div className={styles["container"]}>
-      <Loader />
+      <div className={styles["skeleton-container"]}>
+        <SkeletonText noOfLines={15} spacing={7} {...COMMON_SKELETON_PROPS} />
+      </div>
     </div>
   );
 };

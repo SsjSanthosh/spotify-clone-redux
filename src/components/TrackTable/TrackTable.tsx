@@ -10,6 +10,7 @@ import { fetchPlayerData } from "redux/playerSlice";
 import { getDuration } from "utils/functions";
 import { FALLBACK_IMAGE } from "utils/constants";
 import { nanoid } from "nanoid";
+import SpotifyLink from "components/SpotifyLink";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -36,11 +37,7 @@ const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
               ? track.album.images[0].url
               : FALLBACK_IMAGE;
             return (
-              <div
-                className={styles["track"]}
-                key={nanoid()}
-                onClick={() => handleTrack(track)}
-              >
+              <div className={styles["track"]} key={nanoid()}>
                 <div className={`${styles["item-1"]}`}>{idx + 1}</div>
                 <div
                   className={`${styles["item-2"]} ${styles["track-container"]}`}
@@ -54,14 +51,31 @@ const TrackTable = ({ tracks }: { tracks: TrackType[] }) => {
                     />
                   </div>
                   <div className={styles["track-title"]}>
-                    <p className={styles["track-name"]}>{track.name}</p>
+                    <p
+                      className={styles["track-name"]}
+                      onClick={() => handleTrack(track)}
+                    >
+                      {track.name}
+                    </p>
                     <span className={styles["track-artists"]}>
-                      {track.artists?.map((art) => art.name).join(",")}
+                      {track.artists?.map((art) => (
+                        <span className={styles["track-artist"]} key={art.id}>
+                          <SpotifyLink
+                            link={`/artist/${art.id}`}
+                            text={art.name}
+                          />
+                        </span>
+                      ))}
                     </span>
                   </div>
                 </div>
                 <div className={styles["item-3"]}>
-                  <p className={styles["track-album"]}>{track.album?.name}</p>
+                  <p className={styles["track-album"]}>
+                    <SpotifyLink
+                      text={track.album?.name}
+                      link={`/album/${track.album.id}`}
+                    />
+                  </p>
                 </div>
                 <div className={styles["item-4"]}>No</div>
                 <div className={styles["item-5"]}>

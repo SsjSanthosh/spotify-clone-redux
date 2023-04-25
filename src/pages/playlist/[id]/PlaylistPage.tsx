@@ -41,7 +41,6 @@ const getPlaylistData = async (id: string) => {
 const PlaylistPage = () => {
   const router = useRouter();
   const [playlist, setPlaylist] = useState<GenericObject>({});
-  console.log({ playlist });
   useEffect(() => {
     const { query } = router;
     const getData = async (id: string) => {

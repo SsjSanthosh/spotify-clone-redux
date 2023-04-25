@@ -12,12 +12,11 @@
 .tracks {
   display: flex;
   flex-direction: column;
-  padding:$sp-md;
+  padding: $sp-md;
 }
 .track {
   border-radius: $sp-xs / 2;
   display: flex;
-  cursor: pointer;
   font-size: $font-md;
   align-items: center;
   padding: $sp-md $sp-lg;
@@ -35,21 +34,36 @@
 .track-container {
   display: flex;
   flex-wrap: nowrap;
+  transition: all 0.2s ease;
 
   column-gap: 16px;
   .track-title {
     display: flex;
     flex-direction: column;
+    cursor: pointer;
+    // &:hover {
+    //   text-decoration: underline;
+    // }
   }
   .track-artists {
     color: #aaa;
     font-weight: 400;
     font-size: $font-md - 1;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: nowrap;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
 .track-album {
   font-size: $font-md - 0.5;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .item-1 {
