@@ -1,0 +1,47 @@
+@import "styles/variables";
+.container {
+  width: 100%;
+  background-color: rgba($player-bg-color, 0.8);
+  border-radius: $sp-xs;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  column-gap: $sp-lg;
+  padding-right: $sp-xl;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  &:hover {
+    opacity: 1;
+    background-color: lighten($color: $player-bg-color, $amount: 5);
+    .play-icon {
+        opacity: 1;
+    }
+  }
+  
+}
+
+.image-container {
+  position: relative;
+  width: 80px;
+  height: 100%;
+  border-radius: $sp-xs;
+  > img {
+    border-top-left-radius: $sp-xs;
+    border-bottom-left-radius: $sp-xs;
+    object-fit: cover;
+  }
+}
+
+.title {
+  width:100%;
+  font-weight: 500;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play-icon {
+    opacity: 0;
+    transition: all 0.2s ease;
+}

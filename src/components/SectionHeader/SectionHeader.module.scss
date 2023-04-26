@@ -1,10 +1,13 @@
 @import "styles/variables";
 .header {
   font-weight: bold;
-  font-size: 24px;
+  font-size: $sp-xl;
   color: #fff;
   margin-bottom: $sp-xl;
   padding-bottom: $sp-lg;
-  width: 40%;
   margin: 0;
+}
+
+.header-large {
+  font-size: $sp-xl * 1.3;
 }

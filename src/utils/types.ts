@@ -23,7 +23,7 @@ export interface ProfileType {
 
 export interface UserType {
   profile: ProfileType | null;
-  playlists: GenericObject[] | null;
+  playlists: PlaylistType[] | null;
   loading: boolean;
   error?: boolean;
 }
@@ -159,3 +159,5 @@ export interface ArtistProfile {
   uri: string;
   type: string;
 }
+
+export type CompactCardType = ArtistType | PlaylistType | AlbumType;

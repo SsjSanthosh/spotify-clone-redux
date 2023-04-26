@@ -32,9 +32,6 @@ export const SEEK_ENDPOINT = "/me/player/seek?position_ms={position}";
 
 export const USER_TRACKS_ENDPOINT = "/me/tracks?limit=50";
 
-export const FEATURED_PLAYLISTS_ENDPOINT =
-  "/browse/featured-playlists?country=IN&limit=30";
-
 export const ARTIST_ENDPOINT = "/artists/{id}";
 
 export const ALBUM_ENDPOINT = "/albums/{id}";
@@ -44,3 +41,5 @@ export const ARTIST_TOP_TRACKS_ENDPOINT = `/artists/{id}/top-tracks?market=IN`;
 export const ARTIST_ALBUMS_ENDPOINT = `/artists/{id}/albums?include_groups=single,appears_on&market=IN`;
 
 export const RELATED_ARTISTS_ENDPOINT = `/artists/{id}/related-artists`;
+
+export const FEATURED_PLAYLISTS_ENDPOINT = `/browse/featured-playlists?country=IN&locale=en_IN&limit=20`;
