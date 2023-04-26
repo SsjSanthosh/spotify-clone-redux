@@ -4,18 +4,18 @@ import Image from "next/image";
 import { trimString } from "utils/functions";
 import PlayIcon from "components/PlayIcon";
 import { FALLBACK_IMAGE } from "utils/constants";
+import PlayPauseButton from "components/PlayPauseButton";
 
 const ArtistCard = ({ artist }: { artist: ArtistType | ArtistProfile }) => {
   const artistImage = !artist.images.length
     ? FALLBACK_IMAGE
     : artist.images[0].url;
-  
-  
+
   return (
     <div className={styles["container"]}>
       <div className={styles["image-container"]}>
         <div className={styles["play-icon-container"]}>
-          <PlayIcon onClick={() => console.log("hey")} />
+          <PlayPauseButton color="green" size={40} uri={artist.uri} />
         </div>
         <Image src={artistImage} alt={artist.name} fill />
       </div>

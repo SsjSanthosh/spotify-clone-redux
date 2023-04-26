@@ -44,12 +44,8 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     return () => clearInterval(interval);
   }, [dispatch]);
 
-  const pageTitle = player.player?.is_playing
-    ? `Now playing - ${player.player.item.name}`
-    : null;
   return (
     <div className={styles["container"]}>
-      {pageTitle && <Head>{pageTitle}</Head>}
       <div className={styles["page-container"]}>
         <div className={styles["sidebar-container"]}>
           <Sidebar />

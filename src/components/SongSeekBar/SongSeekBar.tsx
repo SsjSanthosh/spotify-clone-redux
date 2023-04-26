@@ -5,11 +5,10 @@ import { useAppDispatch } from "redux/types";
 import { getDuration, putData } from "utils/functions";
 import { SEEK_ENDPOINT } from "utils/endpoints";
 
-
 const SongSeekBar = () => {
   const { player } = useSelector(playerSelector);
   const dispatch = useAppDispatch();
-  if (!player) return null;
+  if (!player || !player.item) return null;
   const progress = player.progress_ms;
   const percentage = Math.floor((progress / player.item.duration_ms) * 100);
 
@@ -19,8 +18,6 @@ const SongSeekBar = () => {
       {}
     );
   };
-
-
 
   return (
     <div className={styles["container"]}>
