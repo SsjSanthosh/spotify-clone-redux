@@ -11,6 +11,7 @@ import { fetchData } from "utils/functions";
 import { USER_ALBUMS_ENDPOINT } from "utils/endpoints";
 import AlbumCard from "components/AlbumCard";
 import GenericPageSkeleton from "components/GenericPageSkeleton";
+import Head from "next/head";
 
 const LibraryPage = () => {
   const { playlists } = useSelector(userSelector);
@@ -30,6 +31,9 @@ const LibraryPage = () => {
   return (
     <ProtectedRoute>
       <AppLayout>
+        <Head>
+          <title>Spotify - Your library</title>
+        </Head>
         <div className={styles["container"]}>
           <section className={styles["playlists-section"]}>
             <SectionHeader title="Your top playlists" />

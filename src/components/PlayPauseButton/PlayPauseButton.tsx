@@ -22,10 +22,9 @@ const PlayPauseButton = ({
   const { player } = useSelector(playerSelector);
   const toast = useToast();
   const isActive = player?.is_playing && player.context.uri === uri;
+  console.log({ player });
   const handlePlay = async () => {
-    console.log('hello')
     if (isActive) {
-      // @TODO - build a generic function for this
       await putData(PLAYER_PAUSE_ENDPOINT, {});
     } else {
       if (player?.device.is_active) {
