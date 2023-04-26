@@ -1,8 +1,8 @@
 import { NavlinkType, UserActionLink } from "./Sidebar.types";
-import { AiFillHome, AiOutlineSearch, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHome, AiOutlineSearch, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { VscLibrary } from "react-icons/vsc";
 import { IoMdAdd } from "react-icons/io";
-import {BsBookmark} from "react-icons/bs";
+import { BsBookmark } from "react-icons/bs";
 
 import styles from "./Sidebar.module.scss";
 import { nanoid } from "nanoid";
@@ -30,24 +30,25 @@ export const NAVLINKS: NavlinkType[] = [
 
 export const USER_LINKS: UserActionLink[] = [
   {
-    icon: <IoMdAdd className={styles["navlink-user-action-icon"]} />,
+    icon: (
+      <div className={styles["navlink-user-action-create-icon-container"]}>
+        <IoMdAdd className={styles["navlink-user-action-icon"]} />
+      </div>
+    ),
     link: "/playlist",
     text: "Create Playlist",
     iconContainerClassName: "create-icon",
     key: nanoid(),
   },
   {
-    icon: <AiOutlineHeart className={styles["navlink-user-action-icon"]} />,
+    icon: (
+      <div className={styles["navlink-user-action-like-icon-container"]}>
+        <AiFillHeart className={styles["navlink-user-action-icon"]} />
+      </div>
+    ),
     link: "/user-tracks",
     text: "Liked Songs",
     iconContainerClassName: "like-icon",
-    key: nanoid(),
-  },
-  {
-    icon: <BsBookmark className={styles["navlink-user-action-icon"]} />,
-    link: "/episodes",
-    text: "Your Episodes",
-    iconContainerClassName: "episodes-icon",
     key: nanoid(),
   },
 ];

@@ -1,6 +1,6 @@
 @import "styles/variables";
 .container {
-  padding:$sp-xl 0;
+  padding: $sp-xl 0;
   padding-left: $sp-xl;
   display: flex;
   flex-direction: column;
@@ -31,6 +31,10 @@
   &:hover {
     color: #fff;
     transition: all 0.2s ease;
+    .navlink-user-action-create-icon-container,
+    .navlink-user-action-like-icon-container {
+      opacity: 1;
+    }
   }
 }
 
@@ -44,4 +48,22 @@
 
 .navlink-link {
   font-weight: 500;
+}
+
+.navlink-user-action-create-icon-container {
+  background-color: rgb(212, 201, 201);
+  opacity: 0.8;
+  padding: $sp-xs;
+  border-radius: $sp-xs / 2;
+  color: #000;
+  transition: all 0.2s ease;
+}
+
+.navlink-user-action-like-icon-container {
+  background: linear-gradient(130deg,  rgb(107, 71, 224) 36%, rgb(150, 132, 209) 71%, rgba(255,255,255,0.7) 100%);
+  padding: $sp-xs;
+  border-radius: $sp-xs / 2;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+  color: #fff;
 }
