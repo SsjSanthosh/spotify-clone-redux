@@ -43,3 +43,5 @@ export const ARTIST_ALBUMS_ENDPOINT = `/artists/{id}/albums?include_groups=singl
 export const RELATED_ARTISTS_ENDPOINT = `/artists/{id}/related-artists`;
 
 export const FEATURED_PLAYLISTS_ENDPOINT = `/browse/featured-playlists?country=IN&locale=en_IN&limit=20`;
+
+export const USER_ALBUMS_ENDPOINT = `/me/albums?limit=20`;

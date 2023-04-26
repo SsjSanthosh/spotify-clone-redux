@@ -30,7 +30,6 @@ const HomePage = () => {
   useEffect(() => {
     const fetchFeaturedLists = async () => {
       const data = await fetchData(FEATURED_PLAYLISTS_ENDPOINT);
-      console.log({ data });
       setFeaturedLists({
         message: data.message,
         playlists: data.playlists.items,

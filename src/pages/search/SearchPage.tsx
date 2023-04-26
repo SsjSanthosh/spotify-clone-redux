@@ -11,6 +11,7 @@ import AlbumCard from "components/AlbumCard";
 import PlaylistCard from "components/PlaylistCard";
 import ArtistCard from "components/ArtistCard";
 import Link from "next/link";
+import Head from "next/head";
 
 interface SearchType {
   tracks: null | TrackType[];
@@ -110,9 +111,11 @@ const SearchPage = () => {
   return (
     <ProtectedRoute>
       <AppLayout>
-        {/* <Head>
-          <title>Spotify - Search &quot;{query.q}&quot; in {type}</title>
-        </Head> */}
+        <Head>
+          <title>
+            Spotify - Search &quot;{query.q}&quot; in {type}
+          </title>
+        </Head>
         <div className={styles["container"]}>
           <div className={styles["search-types"]}>
             {SEARCH_TYPES.map((t) => {

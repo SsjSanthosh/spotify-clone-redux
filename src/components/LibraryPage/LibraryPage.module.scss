@@ -1,0 +1,15 @@
+@import "styles/variables";
+.container {
+  padding: $sp-xl $sp-xxl;
+  section {
+    padding-bottom: $sp-xxxl;
+  }
+}
+
+.playlists-container,
+.albums-container {
+  display: flex;
+  row-gap: $sp-xxl;
+  column-gap: $sp-xl;
+  flex-wrap: wrap;
+}

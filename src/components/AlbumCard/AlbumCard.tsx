@@ -4,16 +4,18 @@ import Image from "next/image";
 import { BsDot } from "react-icons/bs";
 import { trimString } from "utils/functions";
 import dayjs from "dayjs";
-import PlayIcon from "components/PlayIcon";
+import { FALLBACK_IMAGE } from "utils/constants";
+import PlayPauseButton from "components/PlayPauseButton";
 
 const AlbumCard = ({ album }: { album: AlbumType }) => {
+  const imageUrl = album.images?.length ? album.images[0].url : FALLBACK_IMAGE;
   return (
     <div className={styles["container"]}>
       <div className={styles["image-container"]}>
         <div className={styles["play-icon-container"]}>
-          <PlayIcon onClick={() => console.log("hey")} />
+          <PlayPauseButton color="green" size={50} uri={album.uri} />
         </div>
-        <Image src={album.images[0].url} alt={album.name} fill />
+        <Image src={imageUrl} alt={album.name} fill />
       </div>
       <h5>{trimString(album.name, 20)}</h5>
 
