@@ -6,7 +6,9 @@ import { NAVLINKS, USER_LINKS } from "./Sidebar.utils";
 import { NavlinkType, UserActionLink } from "./Sidebar.types";
 import Playlists from "components/Playlists";
 import Link from "next/link";
+import { useRouter } from "next/router";
 const Sidebar = () => {
+  const router = useRouter();
   return (
     <div className={styles["container"]}>
       <div className={styles["sidebar-top-half"]}>
@@ -16,9 +18,14 @@ const Sidebar = () => {
         {/* Navlinks */}
         <div className={styles["navlinks-container"]}>
           {NAVLINKS.map((navlink: NavlinkType) => {
+            const active = navlink.link === router.asPath;
             return (
               <Link key={navlink.key} href={navlink.link as string}>
-                <div className={styles["navlink-container"]}>
+                <div
+                  className={`${styles["navlink-container"]} ${
+                    active && styles["navlink-container-active"]
+                  }`}
+                >
                   {navlink.icon}
                   <span className={styles["navlink-link"]}>{navlink.text}</span>
                 </div>

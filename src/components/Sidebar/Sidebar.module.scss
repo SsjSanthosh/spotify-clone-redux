@@ -53,14 +53,18 @@
   border: 0.2px solid rgba(54, 51, 51, 0.7);
 }
 
+.navlink-link {
+  font-weight: 500;
+  font-size: $font-md;
+}
+
 .navlink-icon {
   font-size: 24px;
 }
 
-.navlink-link {
-  font-weight: 500;
+.navlink-container-active {
+  color: #fff;
 }
-
 .navlink-user-action-create-icon-container {
   background-color: rgb(212, 201, 201);
   opacity: 0.8;

@@ -13,6 +13,7 @@ import { fetchData } from "utils/functions";
 import { FEATURED_PLAYLISTS_ENDPOINT } from "utils/endpoints";
 import PlaylistCard from "components/PlaylistCard";
 import { themeSelector } from "redux/themeSlice";
+import Head from "next/head";
 
 interface FeaturedListsType {
   playlists: PlaylistType[]; //
@@ -45,13 +46,12 @@ const HomePage = () => {
   if (!profile) {
     return <GenericPageSkeleton />;
   }
-  const backgroundColor = contextColor && {
-    background: `linear-gradient(to-right, rgb(${contextColor}), rgba(0,0,0,1))`,
-  };
-  console.log({ backgroundColor });
   return (
     <ProtectedRoute>
       <AppLayout>
+        <Head>
+          <title>Spotify clone - A project by Santhosh</title>
+        </Head>
         <div className={styles["container"]}>
           <section
             className={styles["user-playlists-wrapper"]}
