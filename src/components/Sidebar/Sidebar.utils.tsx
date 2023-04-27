@@ -1,8 +1,7 @@
 import { NavlinkType, UserActionLink } from "./Sidebar.types";
-import { AiFillHome, AiOutlineSearch, AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { AiFillHome, AiFillHeart } from "react-icons/ai";
 import { VscLibrary } from "react-icons/vsc";
 import { IoMdAdd } from "react-icons/io";
-import { BsBookmark } from "react-icons/bs";
 
 import styles from "./Sidebar.module.scss";
 import { nanoid } from "nanoid";
@@ -12,12 +11,6 @@ export const NAVLINKS: NavlinkType[] = [
     icon: <AiFillHome className={styles["navlink-icon"]} />,
     link: "/",
     text: "Home",
-    key: nanoid(),
-  },
-  {
-    icon: <AiOutlineSearch className={styles["navlink-icon"]} />,
-    link: "/genres",
-    text: "Search",
     key: nanoid(),
   },
   {

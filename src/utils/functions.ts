@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import { BASE_ENDPOINT } from "./constants";
 import dayjs from "dayjs";
 import { GenericObject } from "./types";
+import ColorThief from "colorthief/dist/color-thief.mjs";
 
 import duration from "dayjs/plugin/duration";
 import { store } from "redux/store";
@@ -11,6 +12,8 @@ import { deleteToken } from "redux/authSlice";
 import { clearPlayer } from "redux/playerSlice";
 import { useToast } from "@chakra-ui/react";
 dayjs.extend(duration);
+
+const colorThief = new ColorThief();
 
 export const isTokenAvailable = () => {
   return Cookies.get("token");
@@ -26,17 +29,16 @@ raxios.interceptors.response.use(
     return response;
   },
   function (error) {
-    console.log({ error });
     if (error.response.status === 401) {
       store.dispatch(clearUser());
       store.dispatch(deleteToken());
       store.dispatch(clearPlayer());
       window.location.href = "/login";
-      // toast({
-      //   description:
-      //     "Your token has expired, please click the button below to connect your account and continue using this application",
-      //   status: "error",
-      // });
+      return;
+    }
+    if (error.response.status === 404) {
+      window.location.href = "/";
+      return;
     }
     return Promise.reject(error);
   }
@@ -75,4 +77,14 @@ export const trimString = (str: string, limit: number) => {
 
 export const getDuration = (duration_ms: number) => {
   return dayjs.duration(duration_ms).format("mm:ss");
+};
+
+export const getColorFromImage = (id: string) => {
+  const image: HTMLImageElement | null = document.querySelector(
+    `[id='${id}']`
+  ) as HTMLImageElement | null;
+  if (image?.complete) {
+    return colorThief.getColor(image).join(",");
+  }
+  return null;
 };

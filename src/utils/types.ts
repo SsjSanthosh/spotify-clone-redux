@@ -161,3 +161,8 @@ export interface ArtistProfile {
 }
 
 export type CompactCardType = ArtistType | PlaylistType | AlbumType;
+
+
+export interface ThemeType {
+  contextColor: null | string;
+}

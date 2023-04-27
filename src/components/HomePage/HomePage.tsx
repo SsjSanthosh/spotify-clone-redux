@@ -12,6 +12,7 @@ import { PlaylistType } from "utils/types";
 import { fetchData } from "utils/functions";
 import { FEATURED_PLAYLISTS_ENDPOINT } from "utils/endpoints";
 import PlaylistCard from "components/PlaylistCard";
+import { themeSelector } from "redux/themeSlice";
 
 interface FeaturedListsType {
   playlists: PlaylistType[]; //
@@ -26,6 +27,7 @@ const HomePage = () => {
   const [featuredLists, setFeaturedLists] = useState<FeaturedListsType | null>(
     null
   );
+  const { contextColor } = useSelector(themeSelector);
 
   useEffect(() => {
     const fetchFeaturedLists = async () => {
@@ -35,18 +37,26 @@ const HomePage = () => {
         playlists: data.playlists.items,
       });
     };
-    fetchFeaturedLists();
-  }, []);
+    if (profile && !featuredLists?.playlists) {
+      fetchFeaturedLists();
+    }
+  }, [profile, featuredLists]);
 
   if (!profile) {
     return <GenericPageSkeleton />;
   }
-
+  const backgroundColor = contextColor && {
+    background: `linear-gradient(to-right, rgb(${contextColor}), rgba(0,0,0,1))`,
+  };
+  console.log({ backgroundColor });
   return (
     <ProtectedRoute>
       <AppLayout>
         <div className={styles["container"]}>
-          <section className={styles["user-playlists-wrapper"]}>
+          <section
+            className={styles["user-playlists-wrapper"]}
+            // style={{ ...backgroundColor }}
+          >
             <SectionHeader title={`Good ${greetingTime}`} size="large" />
             <div className={styles["user-playlists-container"]}>
               {!!playlists?.length &&
