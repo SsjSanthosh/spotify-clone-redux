@@ -7,10 +7,13 @@ import Image from "next/image";
 import { playPauseResource } from "utils/playbackFunctions";
 import { useAppDispatch } from "redux/types";
 import { fetchPlayerData } from "redux/playerSlice";
-import { getDuration } from "utils/functions";
+import { getDuration, handleFaveClick, putData } from "utils/functions";
 import { FALLBACK_IMAGE } from "utils/constants";
 import { nanoid } from "nanoid";
 import SpotifyLink from "components/SpotifyLink";
+import { AiOutlineClockCircle, AiOutlineHeart } from "react-icons/ai";
+import { SAVE_TRACK_ENDPOINT } from "utils/endpoints";
+import { useToast } from "@chakra-ui/react";
 
 const relativeTime = require("dayjs/plugin/relativeTime");
 dayjs.extend(relativeTime);
@@ -29,14 +32,19 @@ const TrackTable = ({
     await playPauseResource({ uris: [track.uri] });
     dispatch(fetchPlayerData());
   };
+  const toast = useToast();
+  const toastId = "liked-song";
+
   return (
     <div className={styles["container"]}>
       <div className={styles["header"]}>
         <span className={styles["item-1"]}>#</span>
         <span className={styles["item-2"]}>Title</span>
         <span className={styles["item-3"]}>Album</span>
-        <span className={styles["item-4"]}>Liked</span>
-        <span className={styles["item-5"]}>Duration</span>
+        <span className={styles["item-4"]}> </span>
+        <span className={styles["item-5"]}>
+          <AiOutlineClockCircle size={18} />
+        </span>
       </div>
       <div className={styles["tracks"]}>
         {tracks.map((track: TrackType, idx: number) => {
@@ -68,14 +76,23 @@ const TrackTable = ({
                       {track.name}
                     </p>
                     <span className={styles["track-artists"]}>
-                      {track.artists?.map((art) => (
-                        <span className={styles["track-artist"]} key={art.id}>
-                          <SpotifyLink
-                            link={`/artist/${art.id}`}
-                            text={art.name}
-                          />
-                        </span>
-                      ))}
+                      {Array.isArray(track.artists) &&
+                        track.artists.map((art, i) => {
+                          return (
+                            <span
+                              className={styles["track-artist"]}
+                              key={art.id}
+                            >
+                              <SpotifyLink
+                                link={`/artist/${art.id}`}
+                                text={art.name}
+                              />
+                              {i !== (track.artists?.length as number) - 1 && (
+                                <>,</>
+                              )}
+                            </span>
+                          );
+                        })}
                     </span>
                   </div>
                 </div>
@@ -87,7 +104,21 @@ const TrackTable = ({
                     />
                   </p>
                 </div>
-                <div className={styles["item-4"]}>No</div>
+                <div className={styles["item-4"]}>
+                  <AiOutlineHeart
+                    size={18}
+                    onClick={() => {
+                      handleFaveClick(track.id);
+                      if (!toast.isActive(toastId)) {
+                        toast({
+                          position: "top",
+                          description: "Added to your liked songs.",
+                          id: toastId,
+                        });
+                      }
+                    }}
+                  />
+                </div>
                 <div className={styles["item-5"]}>
                   {getDuration(track.duration_ms)}
                 </div>

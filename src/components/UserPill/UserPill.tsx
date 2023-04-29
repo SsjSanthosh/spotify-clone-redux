@@ -3,7 +3,12 @@ import styles from "./UserPill.module.scss";
 import { Menu, MenuItem, MenuDivider } from "@szhsin/react-menu";
 import { clearUser, userSelector } from "redux/userSlice";
 import Image from "next/image";
-import { AiFillCaretDown } from "react-icons/ai";
+import {
+  AiFillCaretDown,
+  AiOutlineGithub,
+  AiOutlineLinkedin,
+  AiOutlineMail,
+} from "react-icons/ai";
 import { useAppDispatch } from "redux/types";
 import { clearPlayer } from "redux/playerSlice";
 import { deleteToken } from "redux/authSlice";
@@ -54,6 +59,21 @@ const UserPill = () => {
         <a target="_blank" href="https://open.spotify.com/user/ssjdextrous">
           <MenuItem>Your profile</MenuItem>
         </a>
+        <MenuDivider />
+        <div className={styles["links-container"]}>
+          <a
+            target="_blank"
+            href="https://github.com/SsjSanthosh/spotify-clone-redux"
+          >
+            <AiOutlineGithub size={25} />
+          </a>
+          <a target="_blank" href="https://www.linkedin.com/in/ssj-santhosh/">
+            <AiOutlineLinkedin size={25} />
+          </a>
+          <a target="_blank" href="mailto: abc@example.com">
+            <AiOutlineMail size={25} />
+          </a>
+        </div>
         <MenuDivider />
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>

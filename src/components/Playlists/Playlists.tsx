@@ -31,7 +31,7 @@ const Playlists = () => {
   return (
     <div className={styles["container"]}>
       {playlists.map((pl) => {
-        const isActive = player?.is_playing && player.context.uri === pl.uri;
+        const isActive = player?.is_playing && player.context?.uri === pl.uri;
         return (
           <div
             className={styles["playlist-item"]}

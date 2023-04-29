@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import styles from "./PlaylistPage.module.scss";
 import ProtectedRoute from "components/ProtectedRoute";
 import AppLayout from "components/AppLayout";
@@ -46,29 +46,29 @@ const getPlaylistData = async (id: string) => {
 
 const PlaylistPage = () => {
   const router = useRouter();
+  const { query } = router;
   const [playlist, setPlaylist] = useState<PlaylistType | null>(null);
+  const getData = useCallback(async (id: string) => {
+    try {
+      const data = await getPlaylistData(id);
+      data.total_tracks = data.tracks.total;
+      data.tracks = data.tracks.items.map((t: GenericObject) => {
+        // flatten track for easy typing and rendering
+        const newTrack = { ...t, ...t.track };
+        delete newTrack.track;
+        return newTrack;
+      });
+      setPlaylist(data);
+    } catch (err) {
+      console.log({ err });
+    }
+  }, []);
   useEffect(() => {
-    const { query } = router;
-    const getData = async (id: string) => {
-      try {
-        const data = await getPlaylistData(id);
-        data.total_tracks = data.tracks.total;
-        data.tracks = data.tracks.items.map((t: GenericObject) => {
-          // flatten track for easy typing and rendering
-          const newTrack = { ...t, ...t.track };
-          delete newTrack.track;
-          return newTrack;
-        });
-        setPlaylist(data);
-      } catch (err) {
-        console.log({ err });
-      }
-    };
     setPlaylist(null);
     if (query.id) {
       getData(query.id as string);
     }
-  }, [router]);
+  }, [router, getData]);
   if (!playlist) {
     return <GenericPageSkeleton />;
   }

@@ -93,3 +93,9 @@
   width: 56px;
   height: 56px;
 }
+
+.track-artist {
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -38,3 +38,10 @@
     border-radius: 60px;
   }
 }
+
+
+.links-container {
+  display: flex;
+  column-gap: $sp-xl;
+  padding:0 $sp-xl;
+}

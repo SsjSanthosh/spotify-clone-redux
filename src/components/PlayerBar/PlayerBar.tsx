@@ -19,6 +19,7 @@ import Volumebar from "components/Volumebar";
 import SongSeekBar from "components/SongSeekBar";
 import { useToast } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
+import SpotifyLink from "components/SpotifyLink";
 
 const PlayerBar = () => {
   const { player } = useSelector(playerSelector);
@@ -130,7 +131,23 @@ const PlayerBar = () => {
             </div>
             <div className={styles["track-details"]}>
               <p>{track.name}</p>
-              <span>{track.artists?.map((art) => art.name).join(", ")}</span>
+              <span>
+                {Array.isArray(track.artists) &&
+                  track.artists.map((art, idx) => {
+                    return (
+                      <span className={styles["track-artist"]} key={art.id}>
+                        <SpotifyLink
+                          link={`/artist/${art.id}`}
+                          text={art.name}
+                        />
+                        {idx !==
+                          (track.artists?.length as number) - 1 && (
+                          <>,</>
+                        )}
+                      </span>
+                    );
+                  })}
+              </span>
             </div>
           </div>
         )}

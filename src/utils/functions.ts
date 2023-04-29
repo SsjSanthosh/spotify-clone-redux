@@ -11,6 +11,7 @@ import { clearUser } from "redux/userSlice";
 import { deleteToken } from "redux/authSlice";
 import { clearPlayer } from "redux/playerSlice";
 import { useToast } from "@chakra-ui/react";
+import { SAVE_TRACK_ENDPOINT } from "./endpoints";
 dayjs.extend(duration);
 
 const colorThief = new ColorThief();
@@ -87,4 +88,8 @@ export const getColorFromImage = (id: string) => {
     return colorThief.getColor(image).join(",");
   }
   return null;
+};
+
+export const handleFaveClick = async (id: string) => {
+  await putData(SAVE_TRACK_ENDPOINT, { ids: [id] });
 };

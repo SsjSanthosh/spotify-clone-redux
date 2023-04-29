@@ -61,7 +61,7 @@ const HomePage = () => {
             <div className={styles["user-playlists-container"]}>
               {!!playlists?.length &&
                 playlists.slice(0, 6).map((play) => {
-                  return <CompactPlayCard play={play} key={play.id} />;
+                  return <CompactPlayCard play={play} key={play.id} route="playlist" />;
                 })}
             </div>
           </section>

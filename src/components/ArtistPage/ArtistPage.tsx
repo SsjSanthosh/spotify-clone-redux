@@ -24,6 +24,7 @@ import SectionHeader from "components/SectionHeader";
 import TrackTable from "components/TrackTable";
 import AlbumCard from "components/AlbumCard";
 import ArtistCard from "components/ArtistCard";
+import Head from "next/head";
 
 interface ArtistStateType {
   profile: ArtistProfile;
@@ -79,7 +80,9 @@ const ArtistPage = () => {
     descriptions: [
       {
         renderItems: `${
-          new Intl.NumberFormat("en-IN").format(artist.profile.followers.total) as unknown as string
+          new Intl.NumberFormat("en-IN").format(
+            artist.profile.followers.total
+          ) as unknown as string
         } followers`,
         type: "text",
       },
@@ -91,6 +94,9 @@ const ArtistPage = () => {
       <AppLayout>
         <GenericPageHeader imageType="circle" header={header} />
         <div className={styles["container"]}>
+          <Head>
+            <title>Spotify - {artist.profile.name}</title>
+          </Head>
           <section className={styles["tracks-section"]}>
             <SectionHeader title="Popular tracks" />
             <TrackTable tracks={artist.tracks} album={false} albumInfo={null} />
