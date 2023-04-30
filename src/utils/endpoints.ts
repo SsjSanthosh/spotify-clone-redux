@@ -47,3 +47,5 @@ export const FEATURED_PLAYLISTS_ENDPOINT = `/browse/featured-playlists?country=I
 export const USER_ALBUMS_ENDPOINT = `/me/albums?limit=20`;
 
 export const SAVE_TRACK_ENDPOINT = `/me/tracks`;
+
+export const USER_DEVICES_ENDPOINT = `/me/player/devices`;

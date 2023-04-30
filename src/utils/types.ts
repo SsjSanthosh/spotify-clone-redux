@@ -162,7 +162,16 @@ export interface ArtistProfile {
 
 export type CompactCardType = ArtistType | PlaylistType | AlbumType;
 
-
 export interface ThemeType {
   contextColor: null | string;
+}
+
+export interface DeviceType {
+  id: string;
+  is_active: boolean;
+  is_private_session: boolean;
+  is_restricted: false;
+  name: string;
+  type: "Computer" | "Smartphone" | "Speaker";
+  volume_percent: number;
 }

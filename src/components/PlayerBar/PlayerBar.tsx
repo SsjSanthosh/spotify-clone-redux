@@ -17,9 +17,10 @@ import { useAppDispatch } from "redux/types";
 import Image from "next/image";
 import Volumebar from "components/Volumebar";
 import SongSeekBar from "components/SongSeekBar";
-import { useToast } from "@chakra-ui/react";
+import { Tooltip, useToast } from "@chakra-ui/react";
 import { nanoid } from "nanoid";
 import SpotifyLink from "components/SpotifyLink";
+import DeviceSwitcher from "components/DeviceSwitcher";
 
 const PlayerBar = () => {
   const { player } = useSelector(playerSelector);
@@ -140,8 +141,7 @@ const PlayerBar = () => {
                           link={`/artist/${art.id}`}
                           text={art.name}
                         />
-                        {idx !==
-                          (track.artists?.length as number) - 1 && (
+                        {idx !== (track.artists?.length as number) - 1 && (
                           <>,</>
                         )}
                       </span>
@@ -175,6 +175,9 @@ const PlayerBar = () => {
         </div>
       </div>
       <div className={styles["volume-container"]}>
+        <Tooltip label="Switch playback devices">
+          <DeviceSwitcher />
+        </Tooltip>
         <Volumebar />
       </div>
     </div>

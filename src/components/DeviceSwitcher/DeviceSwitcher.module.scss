@@ -1,0 +1,47 @@
+@import "styles/variables";
+.container {
+  h5 {
+    margin: 0;
+    padding:0 $sp-lg;
+  }
+  :global(.szh-menu-container) {
+    bottom: 260px !important;
+  }
+  :global(.szh-menu) {
+    width: 250px;
+    height:220px;
+    overflow: auto;
+    font-size: $font-md;
+    font-weight: 400;
+    left: -80px !important;
+    background-color: $player-bg-color;
+  }
+  :global(.szh-menu__item) {
+    &:hover {
+      background-color: $background-color;
+    }
+  }
+}
+
+
+
+.device-switcher-icon {
+  color: $font-dull;
+  font-size: $font-lg * 1.8;
+}
+
+.device {
+  display: flex;
+  align-items: center;
+  column-gap: $sp-lg;
+  padding:$sp-xs 0;
+}
+
+.device-icon {
+  color: $font-dull;
+  font-size: $font-lg * 1.5;
+}
+
+.device-active {
+    color:$primary;
+}

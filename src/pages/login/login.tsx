@@ -23,17 +23,18 @@ const LoginPage = () => {
   const router = useRouter();
   const toast = useToast();
   const { query } = router;
-  if (query.error && LOGIN_ERROR_MESSAGES[query.error as string]) {
-    const id = "login-error";
-    if (!toast.isActive(id)) {
-      toast({
-        position: "top",
-        description: LOGIN_ERROR_MESSAGES[query.error as string],
-        id,
-      });
+  useEffect(() => {
+    if (query.error && LOGIN_ERROR_MESSAGES[query.error as string]) {
+      const id = "login-error";
+      if (!toast.isActive(id)) {
+        toast({
+          position: "top",
+          description: LOGIN_ERROR_MESSAGES[query.error as string],
+          id,
+        });
+      }
     }
-  }
-  useEffect(() => {}, []);
+  }, [query, toast]);
   return (
     <div className={styles["container"]}>
       <Head>

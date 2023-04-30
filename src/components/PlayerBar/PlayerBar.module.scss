@@ -30,10 +30,12 @@
 
 
 .volume-container {
+  position: relative;
   width: 25%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  column-gap: $sp-lg;
 }
 
 
