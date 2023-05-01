@@ -16,7 +16,9 @@
 }
 
 .user-featured-container {
-  display: flex;
-  grid-gap: $sp-xl;
-  flex-wrap: wrap;
+  display: grid;
+  column-gap: $sp-md;
+  row-gap: $sp-xxl;
+  grid-template-columns: repeat(auto-fill, 180px);
+  justify-content: space-between;
 }

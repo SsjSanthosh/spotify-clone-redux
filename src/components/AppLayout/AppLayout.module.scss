@@ -1,31 +1,25 @@
 @import "styles/variables";
 .container {
-  display: flex;
-  flex-direction: column;
+  display: grid;
 }
 .page-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 9fr;
   width:100vw;
   height:90vh;
 }
 
 .sidebar-container {
-  width: 300px;
   background-color: #000;
-  height:90vh;
-  overflow-y: auto;
 }
 .content-container {
-  background-color: rgba(0, 0, 0, 0.9);
-  flex: 1;
-  height: 100vh;
+  background-color: $background-color;
 }
 
 .top-bar-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: $sp-xl $sp-xl * 2;
   height: 8vh;
 }

@@ -1,13 +1,12 @@
 @import "styles/variables";
 .container {
   color: #fff;
-  width: 190px;
-  height: 250px;
   padding: $sp-md;
   background-color: #353434;
   cursor: pointer;
   border-radius: $sp-sm;
   position: relative;
+  padding-bottom: $sp-xxl;
   h5 {
     font-weight: bold;
     font-size: $font-md + 1;

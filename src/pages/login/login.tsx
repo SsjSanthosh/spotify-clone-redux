@@ -23,17 +23,18 @@ const LoginPage = () => {
   const router = useRouter();
   const toast = useToast();
   const { query } = router;
-  if (query.error && LOGIN_ERROR_MESSAGES[query.error as string]) {
-    const id = "login-error";
-    if (!toast.isActive(id)) {
-      toast({
-        position: "top",
-        description: LOGIN_ERROR_MESSAGES[query.error as string],
-        id,
-      });
+  useEffect(() => {
+    if (query.error && LOGIN_ERROR_MESSAGES[query.error as string]) {
+      const id = "login-error";
+      if (!toast.isActive(id)) {
+        toast({
+          position: "top",
+          description: LOGIN_ERROR_MESSAGES[query.error as string],
+          id,
+        });
+      }
     }
-  }
-  useEffect(() => {}, []);
+  }, [query, toast]);
   return (
     <div className={styles["container"]}>
       <Head>
@@ -46,6 +47,14 @@ const LoginPage = () => {
         <Button size="lg" colorScheme="green" onClick={handleLogin}>
           Connect your spotify account
         </Button>
+        <h4>
+          IMPORTANT NOTE - All users must be pre-approved to be able to connect
+          to Spotify and use this app&apos;s features{" "}
+          <a href="https://developer.spotify.com/documentation/web-api/concepts/quota-modes" target="_blank">as per the Spotify API</a>.
+          Please send an email to{" "}
+          <a href="mailto:bgj.santhosh@gmail.com">bgj.santhosh@gmail.com</a>{" "}
+          along with your spotify account email to be able to access this app
+        </h4>
       </div>
     </div>
   );
