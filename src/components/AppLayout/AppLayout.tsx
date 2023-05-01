@@ -47,15 +47,15 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   return (
     <div className={styles["container"]}>
       <div className={styles["page-container"]}>
-        <div className={styles["sidebar-container"]}>
+        <aside className={styles["sidebar-container"]}>
           <Sidebar />
-        </div>
+        </aside>
         <div className={styles["content-container"]}>
           <div className={styles["top-bar-container"]}>
             <SearchBar />
             <UserPill />
           </div>
-          <div className={styles["page-content"]}>{children}</div>
+          <main className={styles["page-content"]}>{children}</main>
         </div>
       </div>
       <div className={styles["player-container"]}>

@@ -55,7 +55,6 @@ const HomePage = () => {
         <div className={styles["container"]}>
           <section
             className={styles["user-playlists-wrapper"]}
-            // style={{ ...backgroundColor }}
           >
             <SectionHeader title={`Good ${greetingTime}`} size="large" />
             <div className={styles["user-playlists-container"]}>

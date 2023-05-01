@@ -3,8 +3,12 @@
   color: $font-dull;
 }
 
+.track-grid {
+  display: grid;
+  grid-template-columns: 0.5fr 6fr 4.5fr 1fr 1.5fr;
+}
+
 .header {
-  display: flex;
   border-bottom: 0.2px solid rgba(179, 165, 165, 0.4);
   font-size: $font-md;
   padding: $sp-lg;
@@ -12,11 +16,10 @@
 .tracks {
   display: flex;
   flex-direction: column;
-  padding: $sp-md;
+  padding: $sp-md 0;
 }
 .track {
   border-radius: $sp-xs / 2;
-  display: flex;
   font-size: $font-md;
   align-items: center;
   padding: $sp-md $sp-lg;
@@ -25,7 +28,7 @@
   }
 }
 
-.track-name {
+.track-info-container {
   font-weight: 500;
   color: #fff;
   font-size: $font-md;
@@ -35,15 +38,11 @@
   display: flex;
   flex-wrap: nowrap;
   transition: all 0.2s ease;
-
   column-gap: 16px;
-  .track-title {
+  .track-name {
     display: flex;
     flex-direction: column;
     cursor: pointer;
-    // &:hover {
-    //   text-decoration: underline;
-    // }
   }
   .track-artists {
     color: #aaa;
@@ -61,7 +60,7 @@
   }
 }
 
-.track-album {
+.track-album-info-container {
   font-size: $font-md - 0.5;
   cursor: pointer;
   &:hover {
@@ -69,25 +68,4 @@
   }
 }
 
-.item-1 {
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
 
-.item-2 {
-  text-overflow: ellipsis;
-  flex: 18;
-}
-
-.item-3 {
-  flex: 13;
-}
-
-.item-4 {
-  flex: 2;
-}
-
-.item-5 {
-  flex: 4;
-}

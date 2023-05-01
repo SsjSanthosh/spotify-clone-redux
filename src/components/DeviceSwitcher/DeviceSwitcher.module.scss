@@ -2,14 +2,14 @@
 .container {
   h5 {
     margin: 0;
-    padding:0 $sp-lg;
+    padding: 0 $sp-lg;
   }
   :global(.szh-menu-container) {
     bottom: 260px !important;
   }
   :global(.szh-menu) {
     width: 250px;
-    height:220px;
+    height: 220px;
     overflow: auto;
     font-size: $font-md;
     font-weight: 400;
@@ -23,18 +23,19 @@
   }
 }
 
-
-
 .device-switcher-icon {
   color: $font-dull;
   font-size: $font-lg * 1.8;
+  &:hover {
+    color: #fff;
+  }
 }
 
 .device {
   display: flex;
   align-items: center;
   column-gap: $sp-lg;
-  padding:$sp-xs 0;
+  padding: $sp-xs 0;
 }
 
 .device-icon {
@@ -43,5 +44,5 @@
 }
 
 .device-active {
-    color:$primary;
+  color: $primary;
 }

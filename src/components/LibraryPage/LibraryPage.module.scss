@@ -8,8 +8,9 @@
 
 .playlists-container,
 .albums-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 180px);
   row-gap: $sp-xxl;
-  column-gap: $sp-xl;
-  flex-wrap: wrap;
+  column-gap: $sp-md;
+  justify-content: space-between;
 }

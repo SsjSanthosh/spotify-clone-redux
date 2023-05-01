@@ -1,19 +1,15 @@
 @import "styles/variables";
 .container {
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 5fr 2fr;
   padding: $sp-lg * 1.2 $sp-xl;
   position: relative;
   justify-content: space-between;
 }
 
-.track-container {
-  width: 25%;
-}
-
 .controls-container {
   display: flex;
-  width: 50%;
   column-gap: $sp-xl;
   color: #fff;
   align-items: center;
@@ -21,23 +17,20 @@
 }
 
 .main-controls-container {
-  width:100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-
 .volume-container {
   position: relative;
-  width: 25%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   column-gap: $sp-lg;
 }
-
 
 .shuffle-icon,
 .repeat-icon {
@@ -52,8 +45,10 @@
 }
 
 .main-controls-seekbar {
-  width:100%;
+  width: 90%;
+  margin: 0 auto;
 }
+
 .play-icon {
   font-size: $font-lg * 2.5;
   transition: all 0.3s ease;
@@ -82,11 +77,11 @@
   letter-spacing: 0.5px;
   column-gap: $sp-lg;
   font-size: $font-md;
-  width: 400px;
+  max-width: 400px;
   span {
     font-weight: 300;
-    font-size: $font-sm;
-    color: #a7a7a7;
+    font-size: $font-sm - 1;
+    color: $font-dull;
   }
 }
 

@@ -4,7 +4,7 @@ import styles from "./PlayerBar.module.scss";
 import { useSelector } from "react-redux";
 import { fetchPlayerData, playerSelector } from "redux/playerSlice";
 import { BsRepeat, BsRepeat1, BsShuffle } from "react-icons/bs";
-import { fetchData, postData, putData } from "utils/functions";
+import { postData, putData } from "utils/functions";
 import {
   PLAYER_NEXT_ENDPOINT,
   PLAYER_PAUSE_ENDPOINT,
@@ -17,8 +17,7 @@ import { useAppDispatch } from "redux/types";
 import Image from "next/image";
 import Volumebar from "components/Volumebar";
 import SongSeekBar from "components/SongSeekBar";
-import { Tooltip, useToast } from "@chakra-ui/react";
-import { nanoid } from "nanoid";
+import { useToast } from "@chakra-ui/react";
 import SpotifyLink from "components/SpotifyLink";
 import DeviceSwitcher from "components/DeviceSwitcher";
 
@@ -175,10 +174,12 @@ const PlayerBar = () => {
         </div>
       </div>
       <div className={styles["volume-container"]}>
-        <Tooltip label="Switch playback devices">
-          <DeviceSwitcher />
-        </Tooltip>
-        <Volumebar />
+        {isPlayerActive && (
+          <>
+            <DeviceSwitcher />
+            <Volumebar />
+          </>
+        )}
       </div>
     </div>
   );
