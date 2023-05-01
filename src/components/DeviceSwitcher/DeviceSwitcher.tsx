@@ -2,8 +2,6 @@ import styles from "./DeviceSwitcher.module.scss";
 import { useEffect, useState } from "react";
 import { MdComputer, MdDevices } from "react-icons/md";
 import { Menu, MenuDivider, MenuItem } from "@szhsin/react-menu";
-import { useSelector } from "react-redux";
-import { playerSelector } from "redux/playerSlice";
 import { DeviceType } from "utils/types";
 import { fetchData, putData } from "utils/functions";
 import { PLAYER_ENDPOINT, USER_DEVICES_ENDPOINT } from "utils/endpoints";

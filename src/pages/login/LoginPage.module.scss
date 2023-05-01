@@ -1,6 +1,7 @@
+@import "styles/variables";
 .container {
   width: 100%;
-  height:100vh;
+  height: 100vh;
   margin: 0 auto;
   padding-top: 15%;
   display: flex;
@@ -8,10 +9,28 @@
   align-items: center;
   row-gap: 64px;
   background-color: #000;
+  a {
+    color:rgb(9, 148, 106);
+  }
 }
 
 .logo-container {
   width: 320px;
   height: 100px;
   position: relative;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: $sp-xl;
+  align-items: center;
+  button {
+    width: 400px;
+  }
+  h4 {
+    color: $font-dull;
+    font-size: $font-lg * 1.5;
+    width:80%;
+  }
 }
