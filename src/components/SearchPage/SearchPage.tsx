@@ -47,13 +47,16 @@ const SearchCategoryButton = ({
 const SearchPage = () => {
   const router = useRouter();
   const { query } = router;
+
   const [results, setResults] = useState<SearchType>({
     tracks: null,
     playlists: null,
     albums: null,
     artists: null,
   });
+  
   const type = query.type || "tracks";
+
   useEffect(() => {
     const fetchAndSetResults = async (val: string) => {
       const typeKey = type.slice(0, type.length - 1) as string;

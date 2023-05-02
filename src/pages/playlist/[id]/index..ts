@@ -1,2 +1,3 @@
-import PlaylistPage from "./PlaylistPage";
+import PlaylistPage from "components/PlaylistPage";
+
 export default PlaylistPage;

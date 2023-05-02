@@ -12,6 +12,7 @@ import { deleteToken } from "redux/authSlice";
 import { clearPlayer } from "redux/playerSlice";
 import { useToast } from "@chakra-ui/react";
 import { SAVE_TRACK_ENDPOINT } from "./endpoints";
+import { ImageLoaderProps } from "next/image";
 dayjs.extend(duration);
 
 const colorThief = new ColorThief();
@@ -35,6 +36,13 @@ raxios.interceptors.response.use(
       store.dispatch(deleteToken());
       store.dispatch(clearPlayer());
       window.location.href = "/login";
+      return;
+    }
+    if (error.response.status === 403) {
+      store.dispatch(clearUser());
+      store.dispatch(deleteToken());
+      store.dispatch(clearPlayer());
+      window.location.href = "/login?message=forbidden";
       return;
     }
     if (error.response.status === 404) {
